@@ -1,0 +1,21 @@
+{
+    "name": "Ji2.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d",
+        "GUID:b96b642de575e3c43989b09990b38818",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:7e5f2c2c29335e64b8bdafb38cdee87d",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

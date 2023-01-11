@@ -1,0 +1,16 @@
+{
+    "name": "Ji2.Core.Analytics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5722d0635792000489b375cb9e2d1f35"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
