@@ -52,6 +52,11 @@ namespace Ji2Core.Core.ScreenNavigation
                 await CloseCurrent();
             }
 
+            if (CurrentScreen is TScreen screen)
+            {
+                return screen;
+            }
+
             CurrentScreen = Instantiate(screenOrigins[typeof(TScreen)], transform);
             await CurrentScreen.AnimateShow();
             return (TScreen)CurrentScreen;
