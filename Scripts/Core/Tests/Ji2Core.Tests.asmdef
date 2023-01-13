@@ -1,0 +1,20 @@
+{
+    "name": "Ji2Core.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:15a41d79aba30a34684b83704053ef67"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
