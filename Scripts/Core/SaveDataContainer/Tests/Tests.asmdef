@@ -1,10 +1,16 @@
 {
-    "name": "Ji2Core.Tests",
-    "rootNamespace": "",
+    "name": "Ji2Core.SaveDataContainer.Tests",
+    "rootNamespace": "Ji2Core",
     "references": [
-        "GUID:15a41d79aba30a34684b83704053ef67"
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Ji2.Core",
+        "UniTask",
+        "Ji2.Utils"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

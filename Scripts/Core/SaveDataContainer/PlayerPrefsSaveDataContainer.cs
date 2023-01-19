@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Ji2Core.Core
+namespace Ji2Core.Core.SaveDataContainer
 {
     public class PlayerPrefsSaveDataContainer : ISaveDataContainer
     {
@@ -10,7 +11,7 @@ namespace Ji2Core.Core
 
         private Dictionary<string, string> saves;
 
-        public void Load()
+        public async UniTask Load()
         {
             if (PlayerPrefs.HasKey(SAVE_FILE_KEY))
             {
@@ -21,6 +22,8 @@ namespace Ji2Core.Core
             {
                 saves = new Dictionary<string, string>();
             }
+
+            await UniTask.CompletedTask;
         }
 
         public void Save()
@@ -35,9 +38,16 @@ namespace Ji2Core.Core
             Save();
         }
 
-        public T LoadValue<T>(string key)
+        public T GetValue<T>(string key, T defaultValue = default)
         {
-            return JsonConvert.DeserializeObject<T>(saves[key]);
+            if (!saves.ContainsKey(key))
+            {
+                return defaultValue;
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<T>(saves[key]);
+            }
         }
     }
 }

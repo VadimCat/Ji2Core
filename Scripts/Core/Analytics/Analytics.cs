@@ -64,4 +64,13 @@ namespace Ji2Core.Core.Analytics
             loggers[typeof(TAnalyticsLogger)].ForceSend();
         }
     }
+
+    public enum LevelExitType
+    {
+        // ReSharper disable once InconsistentNaming
+        win,
+
+        // ReSharper disable once InconsistentNaming
+        game_closed
+    }
 }

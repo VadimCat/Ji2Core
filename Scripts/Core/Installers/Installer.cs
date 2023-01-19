@@ -1,6 +1,6 @@
 ﻿namespace Ji2Core.Core.Installers
 {
-    public abstract class Installer<T> : IInstaller<T>
+    public abstract class Installer<T> : IInstaller<T> where T : class
     {
         protected abstract T Create();
 

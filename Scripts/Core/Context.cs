@@ -5,13 +5,31 @@ namespace Ji2Core.Core
 {
     public class Context
     {
+        private static Context instance;
         private readonly Dictionary<Type, object> services = new();
+        
+        private Context()
+        {
+            instance = this;
+        }
 
-        public void Register<TContract>(TContract service)
+        public static Context GetInstance()
+        {
+            if (instance != null)
+                return instance;
+
+            return new Context();
+        }
+
+        public void Register<TContract>(TContract service) where TContract : class
         {
             if (services.ContainsKey(typeof(TContract)))
             {
                 throw new Exception("Service already added by this type");
+            }
+            else if(!(service is TContract))
+            {
+                throw new Exception("Service type doesn't match contract type");
             }
             else
             {
@@ -24,15 +42,27 @@ namespace Ji2Core.Core
             return (TContract)services[typeof(TContract)];
         }
 
-        public void Remove<TContract>()
+        public void Unregister<TContract>()
         {
-            if (!services.ContainsKey(typeof(TContract)))
+            Unregister(typeof(TContract));
+        }
+
+        public void Unregister(object obj)
+        {
+            var contract = obj.GetType();
+            
+            Unregister(contract);
+        }
+
+        private void Unregister(Type contract)
+        {
+            if (!services.ContainsKey(contract))
             {
                 throw new Exception("Service already unregistered by this type");
             }
             else
             {
-                services.Remove(typeof(TContract));
+                services.Remove(contract);
             }
         }
     }

@@ -21,10 +21,10 @@ namespace Ji2Core.Core
             currentLoadingOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
             updateService.Add(this);
             await currentLoadingOperation.ToUniTask();
-            var scene = SceneManager.GetSceneByName(sceneName);
-            SceneManager.SetActiveScene(scene);
             currentLoadingOperation = null;
             updateService.Remove(this);
+
+            await UniTask.NextFrame(PlayerLoopTiming.PostLateUpdate);
         } 
         
         public void OnUpdate()

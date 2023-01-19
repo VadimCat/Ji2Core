@@ -2,7 +2,7 @@
 
 namespace Ji2Core.Core.Installers
 {
-    public abstract class MonoInstaller<T> : MonoBehaviour, IInstaller<T>
+    public abstract class MonoInstaller<T> : MonoBehaviour, IInstaller<T> where T : class
     {
         protected abstract T Create(Context context);
         

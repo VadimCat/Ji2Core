@@ -1,5 +1,4 @@
-﻿using Ji2Core.Core;
-using Ji2Core.Core.States;
+﻿using Ji2Core.Core.States;
 
 namespace Ji2Core.Core
 {
@@ -13,12 +12,5 @@ namespace Ji2Core.Core
         {
             StateMachine = stateStateMachine;
         }
-    }
-
-    public interface ISaveDataContainer
-    {
-        public void Load();
-        public void Save();
-        public void SaveValue(string key, object value);
     }
 }
