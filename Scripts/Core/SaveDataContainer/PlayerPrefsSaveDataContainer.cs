@@ -49,5 +49,11 @@ namespace Ji2Core.Core.SaveDataContainer
                 return JsonConvert.DeserializeObject<T>(saves[key]);
             }
         }
+
+        public void ResetKey(string key)
+        {
+            saves.Remove(key);
+            Save();
+        }
     }
 }

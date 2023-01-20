@@ -8,5 +8,6 @@ namespace Ji2Core.Core.SaveDataContainer
         public void Save();
         public void SaveValue(string key, object value);
         public T GetValue<T>(string key, T defaultValue = default);
+        public void ResetKey(string key);
     }
 }

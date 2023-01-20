@@ -43,5 +43,19 @@ namespace Ji2Core.Utils.Shuffling
 
             return new Vector2Int((value) % size.x, (value) / size.x);
         }
+
+        public static int Vector2IntToInt(Vector2Int value, Vector2Int size)
+        {
+            if (value.x >= size.x)
+            {
+                throw new ArgumentOutOfRangeException("value.X is higher then X dimension of array");
+            }
+            if (value.y >= size.y)
+            {
+                throw new ArgumentOutOfRangeException("value.Y is higher then Y dimension of array");
+            }
+
+            return value.x + size.x * value.y;
+        }
     }
 }

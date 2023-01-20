@@ -15,7 +15,8 @@ namespace Ji2Core.Core.ScreenNavigation
 
         private Dictionary<Type, BaseScreen> screenOrigins;
 
-        private BaseScreen CurrentScreen;
+        private BaseScreen currentScreen;
+        public BaseScreen CurrentScreen => currentScreen;
 
         public void Bootstrap()
         {
@@ -32,51 +33,51 @@ namespace Ji2Core.Core.ScreenNavigation
         {
             canvas.worldCamera = Camera.main;
         }
-
+        
         public async Task<BaseScreen> PushScreen(Type type)
         {
-            if (CurrentScreen != null)
+            if (currentScreen != null)
             {
                 await CloseCurrent();
             }
 
-            CurrentScreen = Instantiate(screenOrigins[type], transform);
-            await CurrentScreen.AnimateShow();
-            return CurrentScreen;    
+            currentScreen = Instantiate(screenOrigins[type], transform);
+            await currentScreen.AnimateShow();
+            return currentScreen;    
         }
         
         public async UniTask<TScreen> PushScreen<TScreen>() where TScreen : BaseScreen
         {
-            if (CurrentScreen != null)
+            if (currentScreen != null)
             {
                 await CloseCurrent();
             }
 
-            if (CurrentScreen is TScreen screen)
+            if (currentScreen is TScreen screen)
             {
                 return screen;
             }
 
-            CurrentScreen = Instantiate(screenOrigins[typeof(TScreen)], transform);
-            await CurrentScreen.AnimateShow();
-            return (TScreen)CurrentScreen;
+            currentScreen = Instantiate(screenOrigins[typeof(TScreen)], transform);
+            await currentScreen.AnimateShow();
+            return (TScreen)currentScreen;
         }
 
         public async UniTask CloseScreen<TScreen>() where TScreen : BaseScreen
         {
-            if (CurrentScreen is TScreen)
+            if (currentScreen is TScreen)
             {
-                await CurrentScreen.AnimateClose();
-                Destroy(CurrentScreen.gameObject);
-                CurrentScreen = null;
+                await currentScreen.AnimateClose();
+                Destroy(currentScreen.gameObject);
+                currentScreen = null;
             }
         }
 
         private async UniTask CloseCurrent()
         {
-            await CurrentScreen.AnimateClose();
-            Destroy(CurrentScreen.gameObject);
-            CurrentScreen = null;
+            await currentScreen.AnimateClose();
+            Destroy(currentScreen.gameObject);
+            currentScreen = null;
         }
     }
 }
