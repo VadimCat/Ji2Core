@@ -95,6 +95,7 @@ namespace Ji2Core.Core.Audio
         DefaultBackgroundMusic,
         ButtonFX,
         WinFX,
+        TileTapFx,
         CleaningFX,
         ColoringFX
     }
