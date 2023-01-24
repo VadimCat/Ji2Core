@@ -1,5 +1,4 @@
 using Client.Screens;
-using Client.UI.Screens;
 using Cysharp.Threading.Tasks;
 using Ji2Core.Scripts.Utils;
 using UnityEngine;
