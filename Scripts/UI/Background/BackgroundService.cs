@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Client.UI.Screens
+namespace UI.Background
 {
     public class BackgroundService : MonoBehaviour
     {
@@ -33,6 +33,11 @@ namespace Client.UI.Screens
             transform.position = pos;
         }
 
+        public void SwitchBackground(Sprite sprite)
+        {
+            backRoot.sprite = currentBackground = sprite;
+        }
+        
         public void SwitchBackground(Background background)
         {
             switch (background)
