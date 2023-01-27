@@ -7,8 +7,10 @@ namespace Ji2Core.Core
 {
     public class SceneLoader : IUpdatable
     {
-        private readonly UpdateService updateService;
         public event Action<float> OnProgressUpdate;
+        public event Action<Scene> SceneLoaded;
+        
+        private readonly UpdateService updateService;
         private AsyncOperation currentLoadingOperation;
 
         public SceneLoader(UpdateService updateService)
@@ -25,6 +27,8 @@ namespace Ji2Core.Core
             updateService.Remove(this);
 
             await UniTask.NextFrame(PlayerLoopTiming.PostLateUpdate);
+            
+            SceneLoaded?.Invoke(SceneManager.GetActiveScene());
         } 
         
         public void OnUpdate()

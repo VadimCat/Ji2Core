@@ -5,14 +5,22 @@ namespace Ji2Core.Core.States
 {
     public class StateMachine
     {
-        private readonly Dictionary<Type, IExitableState> _states = new();
+        private readonly IStateFactory stateFactory;
+        private Dictionary<Type, IExitableState> _states = new();
         private IExitableState currentState;
 
+        public event Action<IExitableState> StateEntered;
+        
         public StateMachine(IStateFactory stateFactory)
+        {
+            this.stateFactory = stateFactory;
+        }
+
+        public void Load()
         {
             _states = stateFactory.GetStates(this);
         }
-
+        
         public void Enter<TState>() where TState : IState
         {
             currentState?.Exit();
@@ -27,6 +35,8 @@ namespace Ji2Core.Core.States
             var state = GetState<TState>();
             currentState = state;
             state.Enter(payload);
+            
+            StateEntered?.Invoke(currentState);
         }
 
         private TState GetState<TState>() where TState : IExitableState

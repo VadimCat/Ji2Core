@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Ji2Core.Scripts.Utils
+namespace Ji2Core.Utils
 {
     public static class TweenAnimations
     {
@@ -9,7 +9,7 @@ namespace Ji2Core.Scripts.Utils
             Ease ease = Ease.Linear, int loops = -1)
         {
             return transform.DOScale(maxScale, duraion)
-                .SetLoops(-1, LoopType.Yoyo)
+                .SetLoops(loops, LoopType.Yoyo)
                 .SetEase(Ease.Linear)
                 .SetLink(link);
         }
