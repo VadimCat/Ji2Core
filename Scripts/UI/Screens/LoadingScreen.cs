@@ -1,14 +1,14 @@
-using Client.Screens;
 using Cysharp.Threading.Tasks;
+using Ji2Core.UI.Screens;
 using Ji2Core.Utils;
 using UnityEngine;
 
-namespace Ji2Core.UI.Screens
+namespace UI.Screens
 {
     public class LoadingScreen : BaseScreen
     {
         [SerializeField] private Transform logo0;
-        [SerializeField] private TextLoadingBar loadingBar;
+        [SerializeField] private TextProgressBar progressBar;
 
         private void Awake()
         {
@@ -22,12 +22,12 @@ namespace Ji2Core.UI.Screens
 
         public void SetProgress(float progress)
         {
-            loadingBar.SetLoadingProgress(progress);
+            progressBar.AnimateProgressAsync(progress);
         }
 
         public async UniTask AnimateLoadingBar(float duration)
         {
-            await loadingBar.AnimateProgress(duration);
+            await progressBar.AnimateFakeProgressAsync(duration);
         }
     }
 }
