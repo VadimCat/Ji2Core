@@ -12,5 +12,6 @@ namespace Ji2Core.Core.Analytics
         public const string LevelTypeKey = "level_type";
         public const string ResultKey = "result";
         public const string TimeKey = "time";
+        public const string DifficultyKey = "level_diff";
     }
 }
