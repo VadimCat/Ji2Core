@@ -11,7 +11,7 @@ namespace Ji2Core.Core.SaveDataContainer
 
         private Dictionary<string, string> saves;
 
-        public async UniTask Load()
+        public void Load()
         {
             if (PlayerPrefs.HasKey(SAVE_FILE_KEY))
             {
@@ -22,8 +22,6 @@ namespace Ji2Core.Core.SaveDataContainer
             {
                 saves = new Dictionary<string, string>();
             }
-
-            await UniTask.CompletedTask;
         }
 
         public void Save()

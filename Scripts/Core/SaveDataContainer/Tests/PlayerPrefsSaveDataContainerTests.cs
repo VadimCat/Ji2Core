@@ -19,12 +19,12 @@ namespace Ji2Core.SaveDataContainer.Tests
             var saveDataContainer = Create.PlayerPrefsSaveDataContainer();
 
             // Act.
-            await saveDataContainer.Load();
+            saveDataContainer.Load();
             saveDataContainer.SaveValue(intKey, intSave);
             saveDataContainer.SaveValue(stringKey, stringSave);
             saveDataContainer.SaveValue(floatKey, floatSave);
             saveDataContainer.Save();
-            await saveDataContainer.Load();
+            saveDataContainer.Load();
 
             // Assert.
             Assert.AreEqual(intSave, saveDataContainer.GetValue<int>(intKey));
