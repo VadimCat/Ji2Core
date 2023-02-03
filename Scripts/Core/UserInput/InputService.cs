@@ -10,8 +10,10 @@ namespace Ji2Core.Core.UserInput
         public event Action<Vector2> PointerDown;
         public event Action<Vector2> PointerUp;
 
+        public Vector2 lastPos;
+        
         private bool isEnabled;
-
+        
         public InputService(UpdateService updateService)
         {
             this.updateService = updateService;
@@ -32,7 +34,8 @@ namespace Ji2Core.Core.UserInput
             }
             else if (isEnabled && Input.GetMouseButtonUp(0))
             {
-                PointerUp?.Invoke(Input.mousePosition);
+                lastPos = Input.mousePosition;
+                PointerUp?.Invoke(lastPos);
                 isEnabled = false;
             }
         }

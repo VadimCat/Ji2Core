@@ -6,6 +6,8 @@ namespace Core.Compliments
 {
     public class ImageCompliments : MonoBehaviour, ICompliments
     {
+        [SerializeField] private RectTransform rect;
+        
         [SerializeField] private Image complimentText;
         [SerializeField] private ImageComplimentsAsset textComplimentsAsset;
         [SerializeField] private ComplimentsAnimationConfig complimentsAnimationConfig;
@@ -15,7 +17,7 @@ namespace Core.Compliments
         public void ShowRandomFromScreenPosition(Vector2 startPosition)
         {
             complimentText.sprite = textComplimentsAsset.GetRandomWord();
-            complimentText.transform.position = startPosition;
+            complimentText.transform.localPosition = startPosition;
 
             var targetPosition = GetTargetPosition(startPosition);
             var angleFactor = targetPosition.x > startPosition.x ? -1 : 1;
@@ -50,8 +52,8 @@ namespace Core.Compliments
 
         private Vector2 GetTargetPosition(Vector2 startPosition)
         {
-            float x = Random.Range(0, Screen.width);
-            float y = Screen.height;
+            float x = Random.Range(0, rect.rect.width);
+            float y = rect.rect.height;
             var distanceX = x - startPosition.x;
             var distanceY = y - startPosition.y;
 

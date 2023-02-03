@@ -27,6 +27,9 @@ namespace Core.Compliments
 
         private void StartAnimation(Vector2 targetPosition, int angleFactor)
         {
+            if(animationsSequence != null && animationsSequence.IsPlaying())
+                return;
+            
             complimentText.transform.rotation = Quaternion.identity;
 
             complimentText.alpha = 0;
