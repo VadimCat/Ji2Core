@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1274f9e1ea8314fcab745875b9c95567, type: 3}
   m_Name: ComplimentsWordsConfig
   m_EditorClassIdentifier: 
-  distancePercentY: 0.2
+  distancePercentY: 0.25
   distancePercentX: 0.5
   moveDuration: 1
   moveEase: 1
@@ -20,6 +20,6 @@ MonoBehaviour:
   fadeInEase: 1
   fadeOutDuration: 0.5
   fadeOutEase: 1
-  rotateDuration: 0
+  rotateDuration: 1
   angle: 10
   rotationEase: 1
