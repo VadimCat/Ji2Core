@@ -97,6 +97,8 @@ namespace Ji2Core.Core.Audio
         WinFX,
         TileTapFx,
         CleaningFX,
-        ColoringFX
+        ColoringFX,
+        Swap,
+        TileSet
     }
 }

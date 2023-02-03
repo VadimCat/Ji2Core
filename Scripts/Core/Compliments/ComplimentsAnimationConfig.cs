@@ -1,14 +1,12 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Client.UI.Compliments
+namespace Core.Compliments
 {
     [CreateAssetMenu]
-    public class ComplimentsWordsConfig : ScriptableObject
+    public class ComplimentsAnimationConfig : ScriptableObject
     {
-        [Header("Text Move Settings")] 
         [SerializeField] [Range(0, 1)] public float distancePercentY;
-
         [SerializeField] [Range(0, 1)] public float distancePercentX ;
         [SerializeField] public float moveDuration;
         [SerializeField] public Ease moveEase = Ease.Linear;
