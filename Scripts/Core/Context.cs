@@ -21,7 +21,7 @@ namespace Ji2Core.Core
             return new Context();
         }
 
-        public void Register<TContract>(TContract service) where TContract : class
+        public void Register<TContract>(TContract service)
         {
             if (services.ContainsKey(typeof(TContract)))
             {

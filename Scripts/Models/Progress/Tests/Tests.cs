@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using Client;
 using Ji2.CommonCore.SaveDataContainer;
 using NUnit.Framework;
-using UnityEditor;
 
-namespace Models.Progress.Tests
+namespace Ji2.Models.Progress.Tests
 {
     public class Tests
     {
@@ -12,23 +11,23 @@ namespace Models.Progress.Tests
         public void WhenNoProgress_AndLoadLevel_ThenFirstLevelShouldBeLoaded()
         {
             // Arrange.
-            var levelsConfig = LevelsConfig();
-            var loopProgress = LoopProgress(levelsConfig);
+            var levelOrder = LevelOrder();
+            var loopProgress = LoopProgress();
             loopProgress.Reset();
-            
+
             // Act.
             string levelId = loopProgress.GetNextLevelData().name;
 
             // Assert.
-            Assert.AreEqual(levelsConfig.GetLevelsOrder()[0], levelId);
+            Assert.AreEqual(levelOrder[0], levelId);
         }
 
         [Test]
         public void WhenIncLevel_AndRetry_ThenSameDataShouldBeReturned()
         {
             // Arrange.
-            var levelsConfig = LevelsConfig();
-            var loopProgress = LoopProgress(levelsConfig);
+            var levelOrder = LevelOrder();
+            var loopProgress = LoopProgress();
 
             // Act.
             string levelId = loopProgress.GetNextLevelData().name;
@@ -43,8 +42,8 @@ namespace Models.Progress.Tests
         public void WhenIncLevel_AndIncAgain_ThenSecondLevelShouldBeReturned()
         {
             // Arrange.
-            var levelsConfig = LevelsConfig();
-            var loopProgress = LoopProgress(levelsConfig);
+            var levelOrder = LevelOrder();
+            var loopProgress = LoopProgress();
             loopProgress.Reset();
 
             // Act.
@@ -52,19 +51,19 @@ namespace Models.Progress.Tests
             string levelId = loopProgress.GetNextLevelData().name;
 
             // Assert.
-            Assert.AreEqual(levelsConfig.GetLevelsOrder()[1], levelId);
+            Assert.AreEqual(levelOrder[1], levelId);
         }
 
         [Test]
         public void WhenMainLoopDone_AndReloadApp_ThenSameRandomLevelsShouldBeLoaded()
         {
             // Arrange.
-            var levelsConfig = LevelsConfig();
-            var loopProgress = LoopProgress(levelsConfig);
+            var levelOrder = LevelOrder();
+            var loopProgress = LoopProgress();
             loopProgress.Reset();
-            
+
             // Act.
-            for (int i = 0; i < levelsConfig.GetLevelsOrder().Length; i++)
+            for (int i = 0; i < levelOrder.Length; i++)
             {
                 loopProgress.IncLevel();
             }
@@ -80,14 +79,14 @@ namespace Models.Progress.Tests
             }
 
             var saveLoadOrderLevels = new List<string>();
-            loopProgress = LoopProgress(levelsConfig);
+            loopProgress = LoopProgress();
             loopProgress.Reset();
 
-            for (int i = 0; i < levelsConfig.GetLevelsOrder().Length; i++)
+            for (int i = 0; i < levelOrder.Length; i++)
             {
                 loopProgress.IncLevel();
             }
-            
+
             for (int i = 0; i < 3; i++)
             {
                 var data = loopProgress.GetNextLevelData();
@@ -95,9 +94,9 @@ namespace Models.Progress.Tests
 
                 saveLoadOrderLevels.Add(data.name);
             }
-            
-            loopProgress = LoopProgress(levelsConfig);
-            
+
+            loopProgress = LoopProgress();
+
             for (int i = 0; i < 2; i++)
             {
                 var data = loopProgress.GetNextLevelData();
@@ -114,21 +113,22 @@ namespace Models.Progress.Tests
             Assert.AreEqual(directOrderLevels[4], saveLoadOrderLevels[4]);
         }
 
-        private static LevelsLoopProgress LoopProgress(LevelsConfig levelsConfig)
+        private static LevelsLoopProgress LoopProgress()
         {
             ISaveDataContainer saveDataContainer = new PlayerPrefsSaveDataContainer();
             saveDataContainer.Load();
-            var loop = new LevelsLoopProgress(saveDataContainer, levelsConfig.GetLevelsOrder());
+            var order = LevelOrder();
+            var loop = new LevelsLoopProgress(saveDataContainer, order);
             loop.Load();
             return loop;
         }
 
-        private static LevelsConfig LevelsConfig()
+        private static string[] LevelOrder()
         {
-            var levelDataStorage = AssetDatabase.FindAssets("t:LevelsConfig")[0];
-            var levelsConfig =
-                AssetDatabase.LoadAssetAtPath<LevelsConfig>(AssetDatabase.GUIDToAssetPath(levelDataStorage));
-            return levelsConfig;
+            return new[]
+            {
+                "a", "b", "c", "d", "e", "f", "g", "o", "p", "r", "s", "t"
+            };
         }
     }
 }

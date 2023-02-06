@@ -1,6 +1,6 @@
 {
     "name": "Ji2Core.Models.Progress",
-    "rootNamespace": "Models.Progress",
+    "rootNamespace": "Ji2",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
