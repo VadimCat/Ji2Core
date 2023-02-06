@@ -7,7 +7,7 @@ namespace Ji2Core.Core.Tools
     {
         private void Awake()
         {
-            if (!FindObjectOfType<BootstraperBase>())
+            if (!FindObjectOfType<BootstrapBase>())
             {
                 SceneManager.LoadScene(0);
             }

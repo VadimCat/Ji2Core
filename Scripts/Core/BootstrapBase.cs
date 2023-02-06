@@ -2,7 +2,7 @@
 
 namespace Ji2Core.Core
 {
-    public abstract class BootstraperBase : MonoBehaviour
+    public abstract class BootstrapBase : MonoBehaviour
     {
         protected abstract void Start();
     }
