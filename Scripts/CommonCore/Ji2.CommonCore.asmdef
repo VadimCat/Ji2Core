@@ -1,9 +1,7 @@
 {
-    "name": "Ji2.Core.Analytics",
-    "rootNamespace": "Ji2Core",
-    "references": [
-        "GUID:5722d0635792000489b375cb9e2d1f35"
-    ],
+    "name": "Ji2.CommonCore",
+    "rootNamespace": "Ji2",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

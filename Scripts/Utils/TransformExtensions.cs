@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ji2Core.Utils
+namespace Ji2.Utils
 {
     public static class TransformExtensions
     {

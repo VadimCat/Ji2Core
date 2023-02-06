@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Ji2Core.Core.SaveDataContainer
+namespace Ji2.CommonCore.SaveDataContainer
 {
     public class PlayerPrefsSaveDataContainer : ISaveDataContainer
     {

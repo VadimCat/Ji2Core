@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
-using System.Linq;
 
-namespace Ji2Core.Utils.Shuffling.Tests
+namespace Ji2.Utils.Shuffling.Tests
 {
     public class ShuffleTests
     {

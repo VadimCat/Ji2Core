@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Ji2.UI
 {
     public class TextProgressBar : MonoBehaviour, IProgressBar
     {

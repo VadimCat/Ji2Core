@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using Ji2Core.Models;
 using UnityEngine;
 
-namespace Utils
+namespace Ji2.Utils
 {
     public class CircularSavableArray<T> : ISavable
     {

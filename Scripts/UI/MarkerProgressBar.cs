@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Ji2.UI
 {
     public class MarkerProgressBar : MonoBehaviour, IProgressBar
     {

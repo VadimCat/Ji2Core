@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Ji2Core.SaveDataContainer.Tests
+namespace Ji2.SaveDataContainer.Tests
 {
     public class PlayerPrefsSaveDataContainerTests
     {

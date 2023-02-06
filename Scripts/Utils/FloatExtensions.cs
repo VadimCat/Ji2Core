@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public static class FloatExtensions
+namespace Ji2.Utils
 {
-    public static float ToAudioLevel(this float value)
+    public static class FloatExtensions
     {
-        return Mathf.Log10(value) * 20;
+        public static float ToAudioLevel(this float value)
+        {
+            return Mathf.Log10(value) * 20;
+        }
     }
 }

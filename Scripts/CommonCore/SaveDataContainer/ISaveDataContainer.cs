@@ -1,6 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-
-namespace Ji2Core.Core.SaveDataContainer
+﻿namespace Ji2.CommonCore.SaveDataContainer
 {
     public interface ISaveDataContainer
     {

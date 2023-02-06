@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Ji2Core.Utils.Shuffling
+namespace Ji2.Utils.Shuffling
 {
     public static class Shufflling
     {

@@ -1,12 +1,14 @@
 {
-    "name": "Ji2Core.Utils.Shuffling.Tests",
-    "rootNamespace": "Ji2",
+    "name": "Ji2Core.Models.Progress",
+    "rootNamespace": "Models.Progress",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "Client",
         "Ji2.Core",
         "UniTask",
-        "Ji2.Utils"
+        "Ji2.Models",
+        "Ji2.CommonCore"
     ],
     "includePlatforms": [
         "Editor"

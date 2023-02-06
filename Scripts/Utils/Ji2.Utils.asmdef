@@ -1,6 +1,6 @@
 {
     "name": "Ji2.Utils",
-    "rootNamespace": "Ji2Core",
+    "rootNamespace": "Ji2",
     "references": [
         "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d"
     ],

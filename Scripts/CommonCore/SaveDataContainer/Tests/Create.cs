@@ -1,6 +1,6 @@
-﻿using Ji2Core.Core.SaveDataContainer;
+﻿using Ji2.CommonCore.SaveDataContainer;
 
-namespace Ji2Core.SaveDataContainer.Tests
+namespace Ji2.SaveDataContainer.Tests
 {
     public static class Create
     {

@@ -1,6 +1,6 @@
 {
     "name": "Ji2.UI",
-    "rootNamespace": "",
+    "rootNamespace": "Ji2",
     "references": [
         "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d",
         "GUID:b96b642de575e3c43989b09990b38818",

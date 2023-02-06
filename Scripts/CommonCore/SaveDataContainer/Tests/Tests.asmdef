@@ -1,12 +1,13 @@
 {
     "name": "Ji2Core.SaveDataContainer.Tests",
-    "rootNamespace": "Ji2Core",
+    "rootNamespace": "Ji2",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Ji2.Core",
         "UniTask",
-        "Ji2.Utils"
+        "Ji2.Utils",
+        "Ji2.CommonCore"
     ],
     "includePlatforms": [
         "Editor"

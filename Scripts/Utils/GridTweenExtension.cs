@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ji2Core.Utils
+namespace Ji2.Utils
 {
     public static class GridTweenExtension
     {

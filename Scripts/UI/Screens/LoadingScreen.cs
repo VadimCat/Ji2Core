@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
+using Ji2.UI;
+using Ji2.Utils;
 using Ji2Core.UI.Screens;
-using Ji2Core.Utils;
 using UnityEngine;
 
 namespace UI.Screens

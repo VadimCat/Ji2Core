@@ -1,4 +1,4 @@
-namespace Ji2Core.Core.Analytics
+namespace Ji2.Models.Analytics
 {
     public static class Constants 
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ji2Core.Core.Analytics
+namespace Ji2.Models.Analytics
 {
     public class Analytics : IAnalyticsLogger
     {

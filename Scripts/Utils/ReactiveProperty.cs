@@ -1,6 +1,6 @@
 using System;
 
-namespace Utils
+namespace Ji2.Utils
 {
     public class ReactiveProperty<T> : IDisposable
     {
