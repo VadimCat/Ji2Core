@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Ji2.CommonCore;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Ji2Core.Core.UserInput

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ji2Core.Core
+namespace Ji2.CommonCore
 {
     public class UpdateService : MonoBehaviour
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Ji2.CommonCore;
 using UnityEngine;
 
 namespace Ji2Core.Core.UserInput
