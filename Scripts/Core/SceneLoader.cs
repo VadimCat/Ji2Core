@@ -36,4 +36,12 @@ namespace Ji2Core.Core
             OnProgressUpdate?.Invoke(currentLoadingOperation.progress);
         }
     }
+
+    public static class ContextExtensions
+    {
+        public static SceneLoader SceneLoader(this Context context)
+        {
+            return context.GetService<SceneLoader>();
+        }
+    }
 }

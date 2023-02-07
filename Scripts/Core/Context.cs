@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Client;
+using Ji2.CommonCore.SaveDataContainer;
+using Ji2Core.Core.ScreenNavigation;
 
 namespace Ji2Core.Core
 {
@@ -65,5 +68,9 @@ namespace Ji2Core.Core
                 services.Remove(contract);
             }
         }
+        
+        public LevelsLoopProgress LevelsLoopProgress => GetService<LevelsLoopProgress>();
+        public ISaveDataContainer SaveDataContainer => GetService<ISaveDataContainer>();
+        public ScreenNavigator ScreenNavigator => GetService<ScreenNavigator>();
     }
 }
