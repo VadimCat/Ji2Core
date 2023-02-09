@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ji2.CommonCore.SaveDataContainer;
 using Ji2.Models.Analytics;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Ji2.Models
 {
     public abstract class LevelBase
     {
+        public event Action Complete;
         private readonly Analytics.Analytics analytics;
         private readonly LevelData levelData;
         protected readonly ISaveDataContainer saveDataContainer;
@@ -26,7 +28,7 @@ namespace Ji2.Models
 
         private void CheckPlayTimeForAnalytics()
         {
-            playTime = saveDataContainer.GetValue<float>(Name);
+            playTime = saveDataContainer.GetValue<float>(Name, 0);
             if (Mathf.Approximately(0, playTime))
             {
                 LogAnalyticsLevelFinish(LevelExitType.game_closed);
@@ -72,6 +74,11 @@ namespace Ji2.Models
 
             analytics.LogEventDirectlyTo<YandexMetricaLogger>(Constants.FinishEvent, eventData);
             analytics.ForceSendDirectlyTo<YandexMetricaLogger>();
+        }
+
+        protected virtual void OnComplete()
+        {
+            Complete?.Invoke();
         }
     }
 

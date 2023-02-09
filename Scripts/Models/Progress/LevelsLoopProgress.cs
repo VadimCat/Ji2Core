@@ -108,7 +108,7 @@ namespace Client
 
 public class LevelData
 {
-    public string name;
+    public string name = string.Empty;
     public int uniqueLevelNumber;
     public int levelCount;
     public int lvlLoop;

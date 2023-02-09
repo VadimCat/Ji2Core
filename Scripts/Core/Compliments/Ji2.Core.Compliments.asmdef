@@ -2,8 +2,8 @@
     "name": "Ji2.Core.Compliments",
     "rootNamespace": "",
     "references": [
-        "GUID:7e5f2c2c29335e64b8bdafb38cdee87d",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:7e5f2c2c29335e64b8bdafb38cdee87d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

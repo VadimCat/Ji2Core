@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9388b1aaaa6040bd9ba25e41256c125a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedPercent: 0.5
   loadingBar: {fileID: 935075439943251404}
   progress: {fileID: 5293157481272012748}
 --- !u!1 &4513577728784173173
@@ -526,4 +527,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logo0: {fileID: 2760738595001213177}
-  loadingBar: {fileID: 4349911770764616864}
+  progressBar: {fileID: 4349911770764616864}
