@@ -9,7 +9,7 @@ namespace UI.Screens
     public class LoadingScreen : BaseScreen
     {
         [SerializeField] private Transform logo0;
-        [SerializeField] private TextProgressBar progressBar;
+        [SerializeField] private IProgressBar progressBar;
 
         private void Awake()
         {

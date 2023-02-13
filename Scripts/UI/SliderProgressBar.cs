@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Ji2.UI
 {
-    public class MarkerProgressBar : MonoBehaviour, IProgressBar
+    public class SliderProgressBar : MonoBehaviour, IProgressBar
     {
         [SerializeField] private float speedPercent = .5f;
         [SerializeField] private Slider slider;

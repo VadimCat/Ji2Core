@@ -117,4 +117,3 @@ MonoBehaviour:
   screens:
   - {fileID: 8759322470126098185, guid: 3dc1b17ad67f19643aab6410707372b4, type: 3}
   - {fileID: 2673282795225721937, guid: 2a7dc7d5aff9f5f44833dd5a82c50aef, type: 3}
-  - {fileID: 6398871294771498080, guid: c416dce2c9eaf124190fc494b1e27bbe, type: 3}

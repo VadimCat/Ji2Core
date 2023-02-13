@@ -2,50 +2,50 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Ji2.UI
 {
     public class TextProgressBar : MonoBehaviour, IProgressBar
     {
+        [SerializeField] private TMP_Text text;
         [SerializeField] private float speedPercent = .5f;
 
-        [SerializeField] private Image loadingBar;
-        [SerializeField] private TMP_Text progress;
-
-        private Tween currentTween;
         private const string ProgressTemplate = "{0}%";
 
-        public async UniTask AnimateProgressAsync(float normalProgress)
+        private Tween currentTween;
+        private float progress;
+
+        private void UpdateTextProgress()
+        {
+            text.text = string.Format(ProgressTemplate, (progress * 100).ToString("N0"));
+        }
+
+        public UniTask AnimateProgressAsync(float normalProgress)
         {
             var duration = normalProgress * speedPercent;
 
             currentTween?.Kill();
-            currentTween =
-                loadingBar.DOFillAmount(normalProgress, duration)
-                    .OnUpdate(UpdateTextProgress)
-                    .SetLink(gameObject);
-
-            await currentTween.AwaitForComplete();
+            currentTween = DOTween.To(() => progress, pr =>
+            {
+                progress = pr;
+                UpdateTextProgress();
+            }, normalProgress, duration)
+                .SetLink(gameObject);
+            
+            return currentTween.AwaitForComplete();
         }
 
-        public async UniTask AnimateFakeProgressAsync(float duration)
+        public UniTask AnimateFakeProgressAsync(float duration)
         {
-            await loadingBar.DOFillAmount(1, duration)
-                .OnUpdate(UpdateTextProgress)
-                .SetLink(gameObject)
-                .AwaitForComplete();
+            currentTween?.Kill();
+            currentTween = DOTween.To(() => progress, pr =>
+            {
+                progress = pr;
+                UpdateTextProgress();
+            }, 1, duration)
+                .SetLink(gameObject);
+            
+            return currentTween.AwaitForComplete();
         }
-
-        private void UpdateTextProgress()
-        {
-            progress.text = string.Format(ProgressTemplate, (loadingBar.fillAmount * 100).ToString("N0"));
-        }
-    }
-
-    public interface IProgressBar
-    {
-        public UniTask AnimateProgressAsync(float normalProgress);
-        public UniTask AnimateFakeProgressAsync(float duration);
     }
 }
