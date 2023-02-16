@@ -32,7 +32,8 @@ namespace Ji2Core.Core.Pools
             }
         }
 
-        public TMono Spawn(Vector3 localPosition = default, Quaternion localRotation = default, Transform parent = null)
+        public TMono Spawn(Vector3 position = default, Quaternion rotation = default, Transform parent = null,
+            bool isWorldSpace = false)
         {
             TMono poolable;
             if (pool.Count == 0)
@@ -43,15 +44,25 @@ namespace Ji2Core.Core.Pools
             {
                 poolable = pool.Pop();
             }
+
             Transform transform = poolable.transform;
             transform.SetParent(parent);
-            transform.localPosition = localPosition;
-            transform.localRotation = localRotation;
+            switch (isWorldSpace)
+            {
+                case true:
+                    transform.position = position;
+                    transform.rotation = rotation;
+                    break;
+                case false:
+                    transform.localPosition = position;
+                    transform.localRotation = rotation;
+                    break;
+            }
 
             poolable.Spawn();
 
             usedObjects.Add(poolable);
-            
+
             return poolable;
         }
 
