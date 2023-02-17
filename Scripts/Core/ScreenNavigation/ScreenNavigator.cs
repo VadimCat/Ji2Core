@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using Ji2Core.UI.Screens;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Ji2Core.Core.ScreenNavigation
 {
@@ -12,12 +13,17 @@ namespace Ji2Core.Core.ScreenNavigation
     {
         [SerializeField] private Canvas canvas;
         [SerializeField] private List<BaseScreen> screens;
-
+        [SerializeField] private RectTransform transform;
+        [SerializeField] private CanvasScaler scaler;
+        
         private Dictionary<Type, BaseScreen> screenOrigins;
 
         private BaseScreen currentScreen;
+        
         public BaseScreen CurrentScreen => currentScreen;
-
+        public Vector2 Size => new(transform.rect.width, transform.rect.height);
+        public float ScaleFactor => transform.rect.height / scaler.referenceResolution.y;
+        
         public void Bootstrap()
         {
             SceneManager.sceneLoaded += SetCamera;
