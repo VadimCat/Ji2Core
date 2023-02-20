@@ -8,7 +8,7 @@ namespace Ji2Core.Core.Audio
     {
         [SerializeField] private AudioClipConfig[] clips;
         
-        private Dictionary<AudioClipName, AudioClipConfig> clipsDict = new();
+        private Dictionary<string, AudioClipConfig> clipsDict = new();
         
         public void Bootstrap()
         {
@@ -18,7 +18,7 @@ namespace Ji2Core.Core.Audio
             }
         }
         
-        public AudioClipConfig GetClip(AudioClipName clipName)
+        public AudioClipConfig GetClip(string clipName)
         {
             return clipsDict[clipName];
         }

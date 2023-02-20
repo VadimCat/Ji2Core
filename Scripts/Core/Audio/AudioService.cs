@@ -59,7 +59,7 @@ namespace Ji2Core.Core.Audio
             audioSettings.Save();
         }
 
-        public void PlayMusic(AudioClipName clipName)
+        public void PlayMusic(string clipName)
         {
             var clipConfig = clipsConfig.GetClip(clipName);
             musicSource.clip = clipConfig.Clip;
@@ -67,7 +67,7 @@ namespace Ji2Core.Core.Audio
             musicSource.clip.LoadAudioData();
         }
         
-        public async UniTask PlaySfxAsync(AudioClipName clipName)
+        public async UniTask PlaySfxAsync(string clipName)
         {
             var source = sfxPlaybackPool.Spawn();
             var clipConfig = clipsConfig.GetClip(clipName);
@@ -76,7 +76,7 @@ namespace Ji2Core.Core.Audio
             sfxPlaybackPool.DeSpawn(source);
         }
 
-        public SfxPlaybackSource GetPlaybackSource(AudioClipName clipName)
+        public SfxPlaybackSource GetPlaybackSource(string clipName)
         {
             var source = sfxPlaybackPool.Spawn();
             var clipConfig = clipsConfig.GetClip(clipName);
@@ -88,17 +88,5 @@ namespace Ji2Core.Core.Audio
         {
             sfxPlaybackPool.DeSpawn(playbackSource);
         }
-    }
-    
-    public enum AudioClipName
-    {
-        DefaultBackgroundMusic,
-        ButtonFX,
-        WinFX,
-        TileTapFx,
-        CleaningFX,
-        ColoringFX,
-        Swap,
-        TileSet
     }
 }
