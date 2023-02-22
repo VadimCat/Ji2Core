@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Ji2Core.Models;
 using UnityEngine;
 
@@ -6,12 +7,12 @@ namespace Ji2.Utils
     public class CircularSavableArray<T> : ISavable
     {
         private readonly string indexSaveKey;
-        private readonly T[] array;
+        private readonly List<T> array;
         private int index;
 
-        public CircularSavableArray(T[] array, string indexSaveKey)
+        public CircularSavableArray(IEnumerable<T> array, string indexSaveKey)
         {
-            this.array = array;
+            this.array = new List<T>(array);
             this.indexSaveKey = indexSaveKey;   
             Load();
         }
@@ -19,7 +20,7 @@ namespace Ji2.Utils
         public T GetNext()
         {
             index++;
-            index = index == array.Length ? 0 : index;
+            index = index == array.Count ? 0 : index;
             Save();
             return array[index];
         }
