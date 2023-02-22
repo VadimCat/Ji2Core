@@ -5,8 +5,11 @@ namespace Ji2.Utils
     public class ReactiveProperty<T> : IDisposable
     {
         private T _value;
+        private T _prevValue;
 
         public event Action<T, T> OnValueChanged;
+
+        public T PrevValue => _prevValue;
 
         public T Value
         {
@@ -14,6 +17,7 @@ namespace Ji2.Utils
             set
             {
                 OnValueChanged?.Invoke(value, _value);
+                _prevValue = _value;
                 _value = value;
             }
         }
