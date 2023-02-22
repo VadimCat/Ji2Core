@@ -28,8 +28,8 @@ namespace Ji2.Models
 
         private void CheckPlayTimeForAnalytics()
         {
-            playTime = saveDataContainer.GetValue<float>(Name, 0);
-            if (Mathf.Approximately(0, playTime))
+            playTime = saveDataContainer.GetValue<float>(Name);
+            if (!Mathf.Approximately(0, playTime))
             {
                 LogAnalyticsLevelFinish(LevelExitType.game_closed);
                 playTime = 0;
@@ -68,8 +68,8 @@ namespace Ji2.Models
                 [Constants.LevelLoopKey] = levelData.lvlLoop,
                 [Constants.LevelRandomKey] = levelData.isRandom,
                 [Constants.DifficultyKey] = levelData.difficulty,
-                [Constants.ResultKey] = ((int)levelExitType).ToString(),
-                [Constants.TimeKey] = playTime,
+                [Constants.ResultKey] = (levelExitType).ToString(),
+                [Constants.TimeKey] = (int)playTime,
             };
 
             analytics.LogEventDirectlyTo<YandexMetricaLogger>(Constants.FinishEvent, eventData);
