@@ -32,5 +32,11 @@ namespace Ji2.Ji2Core.Scripts.CommonCore
                 _records.RemoveAt(5);
             }
         }
+
+        public int GetHightRecord()
+        {
+            var records =  _saveDataContainer.GetValue(SAVE_KEY, new List<(string, int)>());
+            return records.Count == 0 ? 0 : records[0].Item2;
+        }
     }
 }
