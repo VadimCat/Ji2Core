@@ -16,12 +16,12 @@ namespace Ji2.Ji2Core.Scripts.CommonCore
         {
             _saveDataContainer = saveDataContainer;
         }
-        
+
         public void Load()
         {
             _records = _saveDataContainer.GetValue(SAVE_KEY, new List<(string, int)>());
         }
-        
+
         public void AddRecord(string nick, int score)
         {
             _records.Add(new(nick, score));
@@ -33,10 +33,10 @@ namespace Ji2.Ji2Core.Scripts.CommonCore
             }
         }
 
-        public int GetHightRecord()
+        public int GetHighRecord()
         {
-            var records =  _saveDataContainer.GetValue(SAVE_KEY, new List<(string, int)>());
-            return records.Count == 0 ? 0 : records[0].Item2;
+            Load();
+            return _records.Count == 0 ? 0 : _records[0].Item2;
         }
     }
 }
