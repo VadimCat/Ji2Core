@@ -16,11 +16,17 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 090000000d000000
-  lastScan: 638120695067615056
+  lastScan: 638128247557992463
   supportSerializedTypes:
   - TypeName: Ji2.UI.IProgressBar, Ji2.UI
     IsCustom: 0
     Emit: 1
   - TypeName: Ji2.UI.IProgressBar[], Ji2.UI
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Ji2Core.Core.Audio.ISoundNamesCollection, Ji2.Core
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Client.SoundNamesCollection, Client
     IsCustom: 0
     Emit: 1
