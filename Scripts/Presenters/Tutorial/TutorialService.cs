@@ -1,4 +1,5 @@
-﻿using Ji2.CommonCore.SaveDataContainer;
+﻿using System.Linq;
+using Ji2.CommonCore.SaveDataContainer;
 
 namespace Ji2.Presenters.Tutorial
 {
@@ -24,6 +25,12 @@ namespace Ji2.Presenters.Tutorial
                     step.Completed += () => saveDataContainer.SaveValue(step.SaveKey, true);
                 }
             }
+        }
+
+        public bool CheckTutorialStep<TStep>() where TStep : ITutorialStep
+        {
+            var key =  steps.First(st => st is TStep).SaveKey;
+            return saveDataContainer.GetValue<bool>(key);
         }
     }
 
