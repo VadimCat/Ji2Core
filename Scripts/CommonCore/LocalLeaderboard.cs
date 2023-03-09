@@ -22,7 +22,7 @@ namespace Ji2.Ji2Core.Scripts.CommonCore
             _records = _saveDataContainer.GetValue(SAVE_KEY, new List<(string, int)>());
         }
 
-        public void AddRecord(string nick, int score)
+        public void TryAddRecord(string nick, int score)
         {
             _records.Add(new(nick, score));
             _records = _records.OrderByDescending(val => val.Item2).ToList();
