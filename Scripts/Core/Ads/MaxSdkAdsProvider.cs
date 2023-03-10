@@ -19,13 +19,18 @@ namespace Ji2Core.Ads
 
             MaxSdk.LoadInterstitial(InterstitialAdUnit);
             MaxSdkCallbacks.Interstitial.OnAdLoadFailedEvent += HandleInterstitialLoadFail;
-
+            MaxSdkCallbacks.Interstitial.OnAdHiddenEvent += HadleInterHide;
             await taskCompletionSource.Task;
 
             void OnMaxSdkInitialized(MaxSdkBase.SdkConfiguration obj)
             {
                 taskCompletionSource.TrySetResult(obj.IsSuccessfullyInitialized);
             }
+        }
+
+        private void HadleInterHide(string adUnit, MaxSdkBase.AdInfo info)
+        {
+            MaxSdk.LoadInterstitial(InterstitialAdUnit);
         }
 
         public async UniTask<bool> InterstitialAsync(CancellationToken cancellationToken)
