@@ -37,8 +37,6 @@ namespace Ji2Core.Ads
 
         public async UniTask<bool> InterstitialAsync(CancellationToken cancellationToken)
         {
-            SRDebug.Instance.AddOptionContainer(new SROptions());
-
             UniTaskCompletionSource<bool> completionSource = new UniTaskCompletionSource<bool>();
 
             await LoadInterAsync(cancellationToken);
