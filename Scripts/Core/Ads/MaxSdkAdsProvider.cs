@@ -1,5 +1,7 @@
 ﻿using System.Threading;
+using Castle.Components.DictionaryAdapter.Xml;
 using Cysharp.Threading.Tasks;
+using SRDebugger;
 
 namespace Ji2Core.Ads
 {
@@ -35,6 +37,8 @@ namespace Ji2Core.Ads
 
         public async UniTask<bool> InterstitialAsync(CancellationToken cancellationToken)
         {
+            SRDebug.Instance.AddOptionContainer(new SROptions());
+
             UniTaskCompletionSource<bool> completionSource = new UniTaskCompletionSource<bool>();
 
             await LoadInterAsync(cancellationToken);
@@ -44,9 +48,10 @@ namespace Ji2Core.Ads
                 MaxSdkCallbacks.Interstitial.OnAdHiddenEvent += HandleAdHide;
                 MaxSdkCallbacks.Interstitial.OnAdLoadFailedEvent += HandleAdFail;
                 MaxSdk.ShowInterstitial(InterstitialAdUnit);
+
                 return await completionSource.Task;
             }
-
+            
             return false;
 
             void HandleAdHide(string adUnit, MaxSdkBase.AdInfo info)
