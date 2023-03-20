@@ -8,7 +8,7 @@ namespace Ji2.Models
 {
     public abstract class LevelBase
     {
-        public event Action Complete;
+        public event Action EventLevelCompled;
         private readonly Analytics.IAnalytics analytics;
         private readonly LevelData levelData;
         protected readonly ISaveDataContainer saveDataContainer;
@@ -77,9 +77,9 @@ namespace Ji2.Models
             analytics.ForceSendDirectlyTo<YandexMetricaLogger>();
         }
 
-        protected virtual void OnComplete()
+        protected virtual void Complete()
         {
-            Complete?.Invoke();
+            EventLevelCompled?.Invoke();
         }
     }
 

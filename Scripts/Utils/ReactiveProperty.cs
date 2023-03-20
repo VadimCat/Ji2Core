@@ -7,7 +7,7 @@ namespace Ji2.Utils
         private T _value;
         private T _prevValue;
 
-        public event Action<T, T> OnValueChanged;
+        public event Action<T, T> EventValueChanged;
 
         public T PrevValue => _prevValue;
 
@@ -16,7 +16,7 @@ namespace Ji2.Utils
             get => _value;
             set
             {
-                OnValueChanged?.Invoke(value, _value);
+                EventValueChanged?.Invoke(value, _value);
                 _prevValue = _value;
                 _value = value;
             }
@@ -34,7 +34,7 @@ namespace Ji2.Utils
 
         public void Dispose()
         {
-            OnValueChanged = null;
+            EventValueChanged = null;
         }
     }
 }
