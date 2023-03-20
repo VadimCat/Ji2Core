@@ -93,7 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedPercent: 0.5
   loadingBar: {fileID: 935075439943251404}
-  progress: {fileID: 5293157481272012748}
 --- !u!1 &4513577728784173173
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +330,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 60915757a888ddc45969508ea0a48472, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -8712994658969214573, guid: 60915757a888ddc45969508ea0a48472, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -526,5 +525,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c3c6976790bcc449de16af6404ee2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 4349911770764616864}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: progressBar
+      Entry: 10
+      Data: 0
   logo0: {fileID: 2760738595001213177}
-  progressBar: {fileID: 4349911770764616864}

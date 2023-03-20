@@ -9,7 +9,7 @@ namespace Ji2.Models
     public abstract class LevelBase
     {
         public event Action Complete;
-        private readonly Analytics.Analytics analytics;
+        private readonly Analytics.IAnalytics analytics;
         private readonly LevelData levelData;
         protected readonly ISaveDataContainer saveDataContainer;
         private float playTime = 0;
@@ -17,7 +17,8 @@ namespace Ji2.Models
         public string Name => levelData.name;
         public int LevelCount => levelData.uniqueLevelNumber;
         public Difficulty Difficulty => levelData.difficulty;
-        protected LevelBase(Analytics.Analytics analytics, LevelData levelData, ISaveDataContainer saveDataContainer)
+        
+        protected LevelBase(Analytics.IAnalytics analytics, LevelData levelData, ISaveDataContainer saveDataContainer)
         {
             this.analytics = analytics;
             this.levelData = levelData;

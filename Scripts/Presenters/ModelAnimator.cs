@@ -24,7 +24,23 @@ namespace Ji2.Presenters
             }
         }
 
-        public async UniTask EnqueueAnimation(Func<UniTask> animationFunc)
+        public async UniTask Enqueue(Action action)
+        {
+            if (CheckAnimationsListEmpty())
+            {
+                action();
+            }
+            else
+            {
+                animationsQueue.Enqueue(() =>
+                {
+                    action();
+                    return UniTask.CompletedTask;
+                });
+            }
+        }
+        
+        public async UniTask Enqueue(Func<UniTask> animationFunc)
         {
             if (CheckAnimationsListEmpty())
             {

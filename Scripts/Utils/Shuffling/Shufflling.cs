@@ -6,7 +6,7 @@ namespace Ji2.Utils.Shuffling
 {
     public static class Shufflling
     {
-        public static int[] CreateShuffledListArray(int length)
+        public static int[] CreateShuffledArray(int length)
         {
             var list = new int[length];
             for (int i = 0; i < length; i++)
@@ -18,7 +18,7 @@ namespace Ji2.Utils.Shuffling
 
             return list;
         }
-
+        
         public static Vector2Int[,] CreatedShuffled2DimensionalArray(Vector2Int size)
         {
             var list = new Vector2Int[size.x, size.y];

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 
 namespace Ji2.Models.Analytics
 {
-    public class Analytics : IAnalyticsLogger
+    public class Analytics : IAnalytics
     {
         private readonly Dictionary<Type, IAnalyticsLogger> loggers = new();
 
         public void AddLogger(IAnalyticsLogger analyticsLogger)
         {
+            if(analyticsLogger == this)
+                return;
+            
             loggers[analyticsLogger.GetType()] = analyticsLogger;
         }
 
@@ -65,6 +68,14 @@ namespace Ji2.Models.Analytics
         }
     }
 
+    public interface IAnalytics : IAnalyticsLogger
+    {
+        public void AddLogger(IAnalyticsLogger analyticsLogger);
+        public void LogEventDirectlyTo<TAnalyticsLogger>(string eventName);
+        public void LogEventDirectlyTo<TAnalyticsLogger>(string eventName, Dictionary<string, object> data);
+        public void ForceSendDirectlyTo<TAnalyticsLogger>();
+    }
+    
     public enum LevelExitType
     {
         // ReSharper disable once InconsistentNaming

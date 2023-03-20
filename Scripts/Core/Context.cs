@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Client;
 using Ji2.CommonCore.SaveDataContainer;
 using Ji2Core.Core.ScreenNavigation;
@@ -42,6 +43,8 @@ namespace Ji2Core.Core
 
         public TContract GetService<TContract>()
         {
+            if (!services.ContainsKey(typeof(TContract)))
+                throw new Exception($"No service register by type {typeof(TContract)}");
             return (TContract)services[typeof(TContract)];
         }
 

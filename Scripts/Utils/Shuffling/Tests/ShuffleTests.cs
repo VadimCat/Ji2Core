@@ -12,7 +12,7 @@ namespace Ji2.Utils.Shuffling.Tests
         {
             // Arrange.
             int count = 9;
-            var shuffled = Shufflling.CreateShuffledListArray(count);
+            var shuffled = Shufflling.CreateShuffledArray(count);
 
             // Act.
             int[] entryCounts = new int[shuffled.Length];
