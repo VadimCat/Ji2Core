@@ -31,7 +31,8 @@ namespace Ji2.CommonCore.SaveDataContainer
 
         public void SaveValue(string key, object value)
         {
-            saves[key] = JsonConvert.SerializeObject(value);
+            var serialized = JsonConvert.SerializeObject(value);
+            saves[key] = serialized;
             Save();
         }
 
