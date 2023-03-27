@@ -7,8 +7,8 @@ namespace Ji2.UI
 {
     public class FillingProgressBar : MonoBehaviour, IProgressBar
     {
+        [SerializeField] private bool isReversed;
         [SerializeField] private float speedPercent = .5f;
-
         [SerializeField] private Image loadingBar;
 
         private Tween currentTween;
@@ -17,9 +17,11 @@ namespace Ji2.UI
         {
             var duration = normalProgress * speedPercent;
 
+            float progress = isReversed ? 1 - normalProgress : normalProgress;
+            
             currentTween?.Kill();
             currentTween =
-                loadingBar.DOFillAmount(normalProgress, duration)
+                loadingBar.DOFillAmount(progress, duration)
                     .SetLink(gameObject);
 
             await currentTween.AwaitForComplete();
