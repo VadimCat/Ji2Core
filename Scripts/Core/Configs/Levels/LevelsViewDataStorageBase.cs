@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Ji2Core.Core;
 using UnityEditor;
@@ -24,7 +25,10 @@ namespace Client
             levelsDict = new Dictionary<string, TLevel>(levels.Count);
             foreach (var lvl in levels)
             {
-                levelsDict[lvl.Id] = lvl;
+                if (!levelsDict.TryAdd(lvl.Id, lvl))
+                {
+                    throw new DuplicateNameException("Levels with same id detected");
+                }
             }
         }
 
