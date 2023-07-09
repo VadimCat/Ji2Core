@@ -1,13 +1,9 @@
 {
-    "name": "Ji2",
-    "rootNamespace": "Ji2",
+    "name": "Ji2.Context",
+    "rootNamespace": "Ji2.Context",
     "references": [
-        "Ji2.Models",
-        "Ji2.Utils",
-        "UniTask",
-        "Ji2.UI",
-        "Ji2.CommonCore",
-        "Ji2.Context"
+        "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d",
+        "GUID:6216dd614b753984b80ce8b43c54dd56"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

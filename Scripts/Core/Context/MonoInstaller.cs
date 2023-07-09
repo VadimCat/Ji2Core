@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ji2Core.Core.Installers
+namespace Ji2.Context
 {
     public abstract class MonoInstaller<T> : MonoBehaviour, IInstaller<T> where T : class
     {

@@ -1,5 +1,5 @@
 ﻿using Ji2.CommonCore;
-using Ji2Core.Core.Installers;
+using Ji2.Context;
 using UnityEngine;
 
 namespace Ji2Core.Core.UserInput

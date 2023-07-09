@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    public interface ILevelView
+    public interface ILevelViewData
     {
         string Id { get; }
     }

@@ -15,19 +15,19 @@ namespace Ji2Core.Core.ScreenNavigation
         [SerializeField] private List<BaseScreen> screens;
         [SerializeField] private RectTransform transform;
         [SerializeField] private CanvasScaler scaler;
-        
+
         private Dictionary<Type, BaseScreen> screenOrigins;
 
         private BaseScreen currentScreen;
-        
+
         public BaseScreen CurrentScreen => currentScreen;
         public Vector2 Size => new(transform.rect.width, transform.rect.height);
         public float ScaleFactor => transform.rect.height / scaler.referenceResolution.y;
-        
+
         public void Bootstrap()
         {
             SceneManager.sceneLoaded += SetCamera;
-            
+
             screenOrigins = new Dictionary<Type, BaseScreen>();
             foreach (var screen in screens)
             {
@@ -39,7 +39,7 @@ namespace Ji2Core.Core.ScreenNavigation
         {
             canvas.worldCamera = Camera.main;
         }
-        
+
         public async Task<BaseScreen> PushScreen(Type type)
         {
             if (currentScreen != null)
@@ -49,9 +49,9 @@ namespace Ji2Core.Core.ScreenNavigation
 
             currentScreen = Instantiate(screenOrigins[type], transform);
             await currentScreen.AnimateShow();
-            return currentScreen;    
+            return currentScreen;
         }
-        
+
         public async UniTask<TScreen> PushScreen<TScreen>() where TScreen : BaseScreen
         {
             if (currentScreen != null)

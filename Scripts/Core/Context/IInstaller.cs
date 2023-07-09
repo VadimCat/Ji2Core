@@ -1,4 +1,4 @@
-﻿namespace Ji2Core.Core.Installers
+﻿namespace Ji2.Context
 {
     public interface IInstaller<T>
     {

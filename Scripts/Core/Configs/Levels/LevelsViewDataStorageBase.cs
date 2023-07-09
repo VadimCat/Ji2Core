@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Client
 {
-    public abstract class LevelsViewDataStorageBase<TLevel> : ScriptableObject, IBootstrapable where TLevel : ILevelView
+    public abstract class LevelsViewDataStorageBase<TLevel> : ScriptableObject, IBootstrapable where TLevel : ILevelViewData
     {
         [SerializeField] private List<TLevel> levels;
 

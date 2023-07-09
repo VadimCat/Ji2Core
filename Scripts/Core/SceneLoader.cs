@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Ji2.CommonCore;
+using Ji2.Context;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

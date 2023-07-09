@@ -2,8 +2,6 @@
 
 namespace Ji2Core.Core
 {
-
-
     public class AppSession
     {
         public StateMachine StateMachine { get; }
