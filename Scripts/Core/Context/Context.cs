@@ -8,11 +8,11 @@ using Object = UnityEngine.Object;
 
 namespace Ji2.Context
 {
-    public class Context: IDependenciesProvider, IDependenciesController
+    public class Context : IDependenciesProvider, IDependenciesController
     {
         private static Context _instance;
         private readonly Dictionary<Type, object> _services = new();
-        
+
         private Context()
         {
             _instance = this;
@@ -38,7 +38,7 @@ namespace Ji2.Context
                 throw new Exception("Service already added by this type");
             }
 
-            if (service.GetType().IsSubclassOf(type) || service.GetType() == type)
+            if (type.IsInstanceOfType(service) || service.GetType() == type)
             {
                 _services[type] = service;
             }
@@ -69,7 +69,7 @@ namespace Ji2.Context
 
             _services.Remove(type);
         }
-        
+
         public LevelsLoopProgress LevelsLoopProgress => GetService<LevelsLoopProgress>();
         public ISaveDataContainer SaveDataContainer => GetService<ISaveDataContainer>();
     }
@@ -80,9 +80,8 @@ namespace Ji2.Context
         public void Register(Type type, object service);
         public void Unregister(Type type);
         public void Unregister<TContract>();
-
     }
-    
+
     public interface IDependenciesProvider
     {
         public TContract GetService<TContract>();
