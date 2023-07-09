@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Client;
 using Ji2.CommonCore.SaveDataContainer;
+using UnityEngine;
+using Debug = fbg.Debug;
+using Object = UnityEngine.Object;
 
 namespace Ji2.Context
 {
@@ -35,12 +38,14 @@ namespace Ji2.Context
                 throw new Exception("Service already added by this type");
             }
 
-            if(service.GetType() != type)
+            if (service.GetType().IsSubclassOf(type) || service.GetType() == type)
+            {
+                _services[type] = service;
+            }
+            else
             {
                 throw new Exception("Service type doesn't match contract type");
             }
-
-            _services[type] = service;
         }
 
         public TContract GetService<TContract>()
