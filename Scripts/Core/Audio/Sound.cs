@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 namespace Ji2Core.Core.Audio
 {
-    public class AudioService : MonoBehaviour, IBootstrapable
+    public class Sound : MonoBehaviour, IBootstrapable
     {
         private const string SFX_KEY = "SfxVolume";
         private const string MUSIC_KEY = "MusicVolume";

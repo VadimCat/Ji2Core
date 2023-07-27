@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ji2Core.Core.UserInput
 {
-    public class InputService : IUpdatable, IDisposable
+    public class MouseInput : IUpdatable, IDisposable
     {
         private readonly UpdateService updateService;
         public event Action<Vector2> PointerMoveScreenSpace;
@@ -15,7 +15,7 @@ namespace Ji2Core.Core.UserInput
         
         private bool isEnabled;
         
-        public InputService(UpdateService updateService)
+        public MouseInput(UpdateService updateService)
         {
             this.updateService = updateService;
 
@@ -24,18 +24,18 @@ namespace Ji2Core.Core.UserInput
 
         public void OnUpdate()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
-                PointerDown?.Invoke(Input.mousePosition);
+                PointerDown?.Invoke(UnityEngine.Input.mousePosition);
                 isEnabled = true;
             }
-            else if (isEnabled && Input.GetMouseButton(0))
+            else if (isEnabled && UnityEngine.Input.GetMouseButton(0))
             {
-                PointerMoveScreenSpace?.Invoke(Input.mousePosition);
+                PointerMoveScreenSpace?.Invoke(UnityEngine.Input.mousePosition);
             }
-            else if (isEnabled && Input.GetMouseButtonUp(0))
+            else if (isEnabled && UnityEngine.Input.GetMouseButtonUp(0))
             {
-                lastPos = Input.mousePosition;
+                lastPos = UnityEngine.Input.mousePosition;
                 PointerUp?.Invoke(lastPos);
                 isEnabled = false;
             }

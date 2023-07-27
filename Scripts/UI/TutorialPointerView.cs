@@ -13,11 +13,20 @@ namespace Ji2.UI
         [SerializeField] private Image pointer;
         [SerializeField] private TMP_Text tooltip;
 
+        private Camera _camera;
+
+        public void SetCamera(Camera screenCamera)
+        {
+            _camera = screenCamera;
+        }
+        
         public async UniTask PlayClickAnimation(Vector3 pos, CancellationToken cancellationToken)
         {
-            pointer.transform.position = pos;
+            Transform pointerTransform = pointer.transform;
+            
+            pointerTransform.position = _camera.WorldToScreenPoint(pos);
             pointer.color = Color.white;
-            pointer.transform.localScale = Vector3.one;
+            pointerTransform.localScale = Vector3.one;
             await pointer.transform.DoPulseScale(.85f, .5f, gameObject)
                 .AwaitForComplete(cancellationToken: cancellationToken);
 
