@@ -27,6 +27,7 @@ namespace Ji2Core.Core.States
             var state = GetState<TState>();
             currentState = state;
             state.Enter();
+            StateEntered?.Invoke(currentState);
         }
 
         public void Enter<TState, TPayload>(TPayload payload) where TState : IPayloadedState<TPayload>

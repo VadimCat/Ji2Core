@@ -1,12 +1,13 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Ji2Core.Core
 {
     public class CameraProvider
     {
-        private UnityEngine.Camera mainCamera;
+        private Camera _mainCamera;
 
-        public UnityEngine.Camera MainCamera => mainCamera;
+        public Camera MainCamera => _mainCamera;
 
         public CameraProvider()
         {
@@ -15,7 +16,8 @@ namespace Ji2Core.Core
 
         private void ChangeCamera(Scene arg0, LoadSceneMode arg1)
         {
-            mainCamera = UnityEngine.Camera.main;
+            _mainCamera = Camera.main;
+            Debug.LogError(_mainCamera.name);
         }
     }
 }
