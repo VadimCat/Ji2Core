@@ -17,7 +17,6 @@ namespace Ji2Core.Core
         private void ChangeCamera(Scene arg0, LoadSceneMode arg1)
         {
             _mainCamera = Camera.main;
-            Debug.LogError(_mainCamera.name);
         }
     }
 }

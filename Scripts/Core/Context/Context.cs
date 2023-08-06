@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using Client;
 using Ji2.CommonCore.SaveDataContainer;
-using UnityEngine;
-using Debug = fbg.Debug;
-using Object = UnityEngine.Object;
 
 namespace Ji2.Context
 {
