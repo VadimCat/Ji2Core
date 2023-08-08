@@ -37,7 +37,7 @@ namespace Ji2.Utils
         
         public static bool IsInRange2D(this Array array, int x, int y)
         {
-            return x >= 0 && x < array.GetLength(0) && y >= 0 && y < array.GetLength(0);
+            return x >= 0 && x < array.GetLength(0) && y >= 0 && y < array.GetLength(1);
         }
     }
 }

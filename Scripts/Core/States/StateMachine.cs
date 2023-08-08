@@ -28,7 +28,6 @@ namespace Ji2Core.Core.States
             var state = GetState<TState>();
             currentState = state;
             state.Enter();
-            Debug.LogError($"{typeof(TState)}");
             StateEntered?.Invoke(currentState);
         }
 
@@ -38,7 +37,6 @@ namespace Ji2Core.Core.States
             var state = GetState<TState>();
             currentState = state;
             state.Enter(payload);
-            Debug.LogError($"{typeof(TState)}");
             
             StateEntered?.Invoke(currentState);
         }
