@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Ji2Core.Core.States
 {
@@ -22,23 +23,31 @@ namespace Ji2Core.Core.States
             _states = stateFactory.GetStates(this);
         }
         
-        public void Enter<TState>() where TState : IState
+        public async UniTask Enter<TState>() where TState : IState
         {
-            currentState?.Exit();
+            await ExitCurrent();
             var state = GetState<TState>();
+            await state.Enter();
             currentState = state;
-            state.Enter();
             StateEntered?.Invoke(currentState);
         }
 
-        public void Enter<TState, TPayload>(TPayload payload) where TState : IPayloadedState<TPayload>
+        public async UniTask Enter<TState, TPayload>(TPayload payload) where TState : IPayloadedState<TPayload>
         {
-            currentState?.Exit();
+            await ExitCurrent();
             var state = GetState<TState>();
+            await state.Enter(payload);
             currentState = state;
-            state.Enter(payload);
-            
+
             StateEntered?.Invoke(currentState);
+        }
+
+        private async Task ExitCurrent()
+        {
+            if (currentState != null)
+            {
+                await currentState.Exit();
+            }
         }
 
         private TState GetState<TState>() where TState : IExitableState
