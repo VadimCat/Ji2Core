@@ -39,5 +39,16 @@
 - SceneLoader - async UniTask scene loading
 - SceneName - in-game scene names (needs to refactor to match AudioService)
 
-## Models
-- Analytics
+### Models
+## Analytics
+-IAnalyticsLogger - interface to adapt most analytics services(also implemented for YandexAppmetica)
+-Analytics - service for analytics logging, impelemnts IAnalyticsLogger, collects all loggers and send event to all of them or separatly
+## Progress
+- LevelsLoopProgress - returns endless level queue, saves progress
+## Other
+-ISavable - base interface for saving
+-LevelBase - base class, needs to save/load, store analytics data and send it.
+### Models
+## Tutorial
+- ITutorialStep
+- TutorialService
