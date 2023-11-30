@@ -8,6 +8,7 @@ namespace Ji2.CommonCore
     {
         private readonly List<IUpdatable> updatables = new();
         private readonly List<IFixedUpdatable> fixedUpdatables = new();
+        private readonly List<ILateUpdatable> lateUpdatables = new();
 
         private void Update()
         {
@@ -25,6 +26,14 @@ namespace Ji2.CommonCore
             }
         }
 
+        private void LateUpdate()
+        {
+            foreach(var lateUpdatable in lateUpdatables)
+            {
+                lateUpdatable.OnLateUpdate();
+            }
+        }
+
         public void Add(object updatable)
         {
             if (updatable is IUpdatable upd && !updatables.Contains(upd))
@@ -34,6 +43,10 @@ namespace Ji2.CommonCore
             if (updatable is IFixedUpdatable fixUpd && !fixedUpdatables.Contains(fixUpd))
             {
                 fixedUpdatables.Add(fixUpd);
+            }
+            if (updatable is ILateUpdatable lateUpd && !lateUpdatables.Contains(lateUpd))
+            {
+                lateUpdatables.Add(lateUpd);
             }
         }
 
@@ -47,6 +60,11 @@ namespace Ji2.CommonCore
             {
                 fixedUpdatables.Remove(fixUpd);
             }
+
+            if (updatable is ILateUpdatable lateUpd && lateUpdatables.Contains(lateUpd))
+            {
+                lateUpdatables.Remove(lateUpd);
+            }
         }
     }
 
@@ -58,5 +76,10 @@ namespace Ji2.CommonCore
     public interface IFixedUpdatable
     {
         public void OnFixedUpdate();
+    }
+
+    public interface ILateUpdatable
+    {
+        public void OnLateUpdate();
     }
 }
