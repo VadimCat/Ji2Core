@@ -2,51 +2,69 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Ji2Core.Core.States
 {
     public class StateMachine
     {
-        private readonly IStateFactory stateFactory;
+        private readonly IStateFactory _stateFactory;
+        private readonly bool _enableLogging;
         private Dictionary<Type, IExitableState> _states = new();
-        private IExitableState currentState;
+        public IExitableState CurrentState { get; private set; }
 
         public event Action<IExitableState> StateEntered;
         
-        public StateMachine(IStateFactory stateFactory)
+        public StateMachine(IStateFactory stateFactory, bool enableLogging = false)
         {
-            this.stateFactory = stateFactory;
+            _stateFactory = stateFactory;
+            _enableLogging = enableLogging;
         }
 
         public void Load()
         {
-            _states = stateFactory.GetStates(this);
+            _states = _stateFactory.GetStates(this);
         }
         
         public async UniTask Enter<TState>() where TState : IState
         {
-            await ExitCurrent();
+            if (_enableLogging)
+            {
+                Debug.Log($"Enter {typeof(TState)}");
+            }
+            var exitCurrent = ExitCurrent();
             var state = GetState<TState>();
+
+            CurrentState = state;
+
+            await exitCurrent;
             await state.Enter();
-            currentState = state;
-            StateEntered?.Invoke(currentState);
+            StateEntered?.Invoke(CurrentState);
         }
 
         public async UniTask Enter<TState, TPayload>(TPayload payload) where TState : IPayloadedState<TPayload>
         {
-            await ExitCurrent();
-            var state = GetState<TState>();
-            await state.Enter(payload);
-            currentState = state;
+            if (_enableLogging)
+            {
+                Debug.Log($"Enter {typeof(TState)}");
+            }
 
-            StateEntered?.Invoke(currentState);
+            var exitCurrent = ExitCurrent();
+            var state = GetState<TState>();
+            
+            CurrentState = state;
+            
+            await exitCurrent;
+            await state.Enter(payload);
+
+            StateEntered?.Invoke(CurrentState);
         }
 
         private async Task ExitCurrent()
         {
-            if (currentState != null)
+            if (CurrentState != null)
             {
-                await currentState.Exit();
+                await CurrentState.Exit();
             }
         }
 
