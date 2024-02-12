@@ -2,6 +2,6 @@
 {
     public interface IInstaller<T>
     {
-        public T Install(Context context);
+        public T Install(DiContext diContext);
     }
 }

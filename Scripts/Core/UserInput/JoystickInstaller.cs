@@ -8,9 +8,9 @@ namespace Ji2Core.Core.UserInput
     {
         [SerializeField] private Joystick joystick;
         
-        protected override Joystick Create(Context context)
+        protected override Joystick Create(DiContext diContext)
         {
-            joystick.SetDependencies(context.GetService<CameraProvider>(), context.GetService<UpdateService>());
+            joystick.SetDependencies(diContext.GetService<CameraProvider>(), diContext.GetService<UpdateService>());
             return joystick;
         }
     }

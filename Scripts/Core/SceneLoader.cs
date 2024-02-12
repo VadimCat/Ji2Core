@@ -41,9 +41,9 @@ namespace Ji2Core.Core
 
     public static class ContextExtensions
     {
-        public static SceneLoader SceneLoader(this Context context)
+        public static SceneLoader SceneLoader(this DiContext diContext)
         {
-            return context.GetService<SceneLoader>();
+            return diContext.GetService<SceneLoader>();
         }
     }
 }

@@ -4,13 +4,13 @@ namespace Ji2.Context
 {
     public abstract class MonoInstaller<T> : MonoBehaviour, IInstaller<T> where T : class
     {
-        protected abstract T Create(Context context);
+        protected abstract T Create(DiContext diContext);
         
-        public T Install(Context context)
+        public T Install(DiContext diContext)
         {
-            var instance = Create(context);
+            var instance = Create(diContext);
             
-            context.Register(instance);
+            diContext.Register(instance);
             return instance;
         }
     }

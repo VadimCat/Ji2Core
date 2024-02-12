@@ -16,7 +16,7 @@ namespace Ji2.Models.Progress.Tests
             loopProgress.Reset();
 
             // Act.
-            string levelId = loopProgress.GetNextLevelData().name;
+            string levelId = loopProgress.GetNextLevelData().Name;
 
             // Assert.
             Assert.AreEqual(levelOrder[0], levelId);
@@ -30,9 +30,9 @@ namespace Ji2.Models.Progress.Tests
             var loopProgress = LoopProgress();
 
             // Act.
-            string levelId = loopProgress.GetNextLevelData().name;
+            string levelId = loopProgress.GetNextLevelData().Name;
             loopProgress.IncLevel();
-            string retryLevelId = loopProgress.GetRetryLevelData().name;
+            string retryLevelId = loopProgress.GetRetryLevelData().Name;
 
             // Assert.
             Assert.AreEqual(levelId, retryLevelId);
@@ -48,7 +48,7 @@ namespace Ji2.Models.Progress.Tests
 
             // Act.
             loopProgress.IncLevel();
-            string levelId = loopProgress.GetNextLevelData().name;
+            string levelId = loopProgress.GetNextLevelData().Name;
 
             // Assert.
             Assert.AreEqual(levelOrder[1], levelId);
@@ -75,7 +75,7 @@ namespace Ji2.Models.Progress.Tests
                 var data = loopProgress.GetNextLevelData();
                 loopProgress.IncLevel();
 
-                directOrderLevels.Add(data.name);
+                directOrderLevels.Add(data.Name);
             }
 
             var saveLoadOrderLevels = new List<string>();
@@ -92,7 +92,7 @@ namespace Ji2.Models.Progress.Tests
                 var data = loopProgress.GetNextLevelData();
                 loopProgress.IncLevel();
 
-                saveLoadOrderLevels.Add(data.name);
+                saveLoadOrderLevels.Add(data.Name);
             }
 
             loopProgress = LoopProgress();
@@ -102,7 +102,7 @@ namespace Ji2.Models.Progress.Tests
                 var data = loopProgress.GetNextLevelData();
                 loopProgress.IncLevel();
 
-                saveLoadOrderLevels.Add(data.name);
+                saveLoadOrderLevels.Add(data.Name);
             }
 
             // Assert.

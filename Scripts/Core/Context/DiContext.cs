@@ -5,22 +5,22 @@ using Ji2.CommonCore.SaveDataContainer;
 
 namespace Ji2.Context
 {
-    public class Context : IDependenciesProvider, IDependenciesController
+    public class DiContext : IDependenciesProvider, IDependenciesController
     {
-        private static Context _instance;
+        private static DiContext _instance;
         private readonly Dictionary<Type, object> _services = new();
 
-        private Context()
+        private DiContext()
         {
             _instance = this;
         }
 
-        public static Context GetOrCreateInstance()
+        public static DiContext GetOrCreateInstance()
         {
             if (_instance != null)
                 return _instance;
 
-            return new Context();
+            return new DiContext();
         }
 
         public void Register<TContract>(TContract service)

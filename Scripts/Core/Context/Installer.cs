@@ -4,11 +4,11 @@
     {
         protected abstract T Create();
 
-        public T Install(Context context)
+        public T Install(DiContext diContext)
         {
             var instance = Create();
             
-            context.Register(instance);
+            diContext.Register(instance);
             return instance;
         }
     }
