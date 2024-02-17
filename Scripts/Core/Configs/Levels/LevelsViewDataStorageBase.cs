@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Ji2Core.Core;
 using UnityEditor;
 using UnityEngine;
 
-namespace Client
+namespace Ji2.Configs.Levels
 {
     public abstract class LevelsViewDataStorageBase<TLevel> : ScriptableObject, IBootstrapable where TLevel : ILevelViewData
     {

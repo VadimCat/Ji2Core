@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Ji2Core.Core.Pools
+namespace Ji2.Pools
 {
     public class Pool<TMono> : IDisposable where TMono : MonoBehaviour, IPoolable
     {

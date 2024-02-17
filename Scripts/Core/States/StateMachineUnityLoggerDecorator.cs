@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Ji2Core.Core.States
+namespace Ji2.States
 {
     public class StateMachineUnityLoggerDecorator : IStateMachine
     {

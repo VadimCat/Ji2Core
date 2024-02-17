@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Ji2Core.Core.UserInput
+namespace Ji2.UserInput
 {
     public class Joystick : MonoBehaviour, IUpdatable
     {

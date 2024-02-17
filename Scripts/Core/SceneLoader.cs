@@ -5,7 +5,7 @@ using Ji2.Context;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Ji2Core.Core
+namespace Ji2
 {
     public class SceneLoader : IUpdatable
     {

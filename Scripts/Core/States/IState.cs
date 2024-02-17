@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Ji2Core.Core.States
+namespace Ji2.States
 {
     public interface IState : IExitableState
     {

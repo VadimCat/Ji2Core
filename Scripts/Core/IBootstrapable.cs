@@ -1,4 +1,4 @@
-﻿namespace Ji2Core.Core
+﻿namespace Ji2
 {
     public interface IBootstrapable
     {

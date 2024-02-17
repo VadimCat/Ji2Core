@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
-namespace Ji2Core.Core.Tools
+namespace Ji2.Tools
 {
     public static class LayerUtils
     {

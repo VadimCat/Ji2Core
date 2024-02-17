@@ -1,15 +1,7 @@
 {
-    "name": "Ji2",
+    "name": "Ji2.States",
     "rootNamespace": "Ji2",
-    "references": [
-        "Ji2.Models",
-        "Ji2.Utils",
-        "UniTask",
-        "Ji2.UI",
-        "Ji2.CommonCore",
-        "Ji2.Context",
-        "Ji2.States"
-    ],
+    "references": ["GUID:f51ebe6a0ceec4240a699833d6309b23"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

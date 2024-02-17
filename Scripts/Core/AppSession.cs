@@ -1,6 +1,6 @@
-﻿using Ji2Core.Core.States;
+﻿using Ji2.States;
 
-namespace Ji2Core.Core
+namespace Ji2
 {
     public class AppSession
     {

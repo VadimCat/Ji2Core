@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Ji2Core.Core.Pools;
+using Ji2.Pools;
 using UnityEngine;
 
 namespace Ji2.Audio

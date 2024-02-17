@@ -2,7 +2,7 @@
 using Ji2.Context;
 using UnityEngine;
 
-namespace Ji2Core.Core.UserInput
+namespace Ji2.UserInput
 {
     public class JoystickInstaller : MonoInstaller<Joystick>
     {

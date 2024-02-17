@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Ji2Core.Core.Tools
+namespace Ji2.Tools
 {
     public class InEditorBootstraper : MonoBehaviour
     {

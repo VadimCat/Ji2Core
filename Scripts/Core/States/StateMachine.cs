@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
-namespace Ji2Core.Core.States
+namespace Ji2.States
 {
     public class StateMachine: IStateMachine
     {

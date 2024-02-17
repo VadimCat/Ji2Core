@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ji2Core.Core.States
+namespace Ji2.States
 {
     public interface IStateFactory
     {

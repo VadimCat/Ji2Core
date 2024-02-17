@@ -1,4 +1,4 @@
-﻿namespace Ji2Core.Core.Pools
+﻿namespace Ji2.Pools
 {
     public interface IPoolable
     {

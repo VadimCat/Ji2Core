@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
+using Ji2.Pools;
 using Ji2.Utils;
-using Ji2Core.Core.Pools;
 using UnityEngine;
 using UnityEngine.Audio;
 

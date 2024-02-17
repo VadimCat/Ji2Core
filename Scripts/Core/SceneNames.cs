@@ -1,4 +1,7 @@
-public static class SceneNames
+namespace Ji2
 {
-    public const string GameScene = "LevelScene";
+    public static class SceneNames
+    {
+        public const string GameScene = "LevelScene";
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ji2Core.Core
+namespace Ji2
 {
     public abstract class BootstrapBase : MonoBehaviour
     {

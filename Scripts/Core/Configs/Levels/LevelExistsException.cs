@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client
+namespace Ji2.Configs.Levels
 {
     public class LevelExistsException : Exception
     {
