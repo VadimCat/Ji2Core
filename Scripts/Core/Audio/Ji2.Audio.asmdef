@@ -1,0 +1,19 @@
+{
+    "name": "Ji2.Audio",
+    "rootNamespace": "Ji2",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:15a41d79aba30a34684b83704053ef67",
+        "GUID:b96b642de575e3c43989b09990b38818",
+        "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

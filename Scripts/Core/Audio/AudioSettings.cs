@@ -1,12 +1,12 @@
 ﻿using Ji2Core.Models;
 using UnityEngine;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     public class AudioSettings : ISavable
     {
-        public const string sfxLevelKey = "sfxLevelKey";
-        public const string musicLevelKey = "musicLevelKey";
+        public const string SfxLevelKey = "sfxLevelKey";
+        public const string MusicLevelKey = "musicLevelKey";
     
         public float SfxLevel = 1;
         public float MusicLevel = 1;
@@ -18,27 +18,27 @@ namespace Ji2Core.Core.Audio
         
         public void Save()
         {
-            PlayerPrefs.SetFloat(sfxLevelKey, SfxLevel);
-            PlayerPrefs.SetFloat(musicLevelKey, MusicLevel);
+            PlayerPrefs.SetFloat(SfxLevelKey, SfxLevel);
+            PlayerPrefs.SetFloat(MusicLevelKey, MusicLevel);
         }
 
         public void Load()
         {
-            if (PlayerPrefs.HasKey(sfxLevelKey))
+            if (PlayerPrefs.HasKey(SfxLevelKey))
             {
-                SfxLevel = PlayerPrefs.GetFloat(sfxLevelKey);
+                SfxLevel = PlayerPrefs.GetFloat(SfxLevelKey);
             }
 
-            if (PlayerPrefs.HasKey(musicLevelKey))
+            if (PlayerPrefs.HasKey(MusicLevelKey))
             {
-                MusicLevel = PlayerPrefs.GetFloat(musicLevelKey);
+                MusicLevel = PlayerPrefs.GetFloat(MusicLevelKey);
             }
         }
 
         public void ClearSave()
         {
-            PlayerPrefs.DeleteKey(sfxLevelKey);
-            PlayerPrefs.DeleteKey(musicLevelKey);
+            PlayerPrefs.DeleteKey(SfxLevelKey);
+            PlayerPrefs.DeleteKey(MusicLevelKey);
         }
     }
 }

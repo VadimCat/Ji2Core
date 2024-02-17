@@ -2,19 +2,19 @@ using Cysharp.Threading.Tasks;
 using Ji2Core.Core.Pools;
 using UnityEngine;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     public class SfxPlaybackSource : MonoBehaviour, IPoolable
     {
         [SerializeField] private AudioSource source;
-        private AudioClipConfig clipConfig;
-        private UniTaskCompletionSource<bool> completionSource;
+        private AudioClipConfig _clipConfig;
+        private UniTaskCompletionSource<bool> _completionSource;
 
         public bool IsPlaying => source.isPlaying;
         
         public void SetDependencies(AudioClipConfig clipConfig)
         {
-            this.clipConfig = clipConfig;
+            this._clipConfig = clipConfig;
             source.clip = clipConfig.Clip;
             source.volume = clipConfig.PlayVolume;
         }

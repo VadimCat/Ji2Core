@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     [CreateAssetMenu]
     public class AudioClipConfig : SerializedScriptableObject
@@ -13,7 +13,7 @@ namespace Ji2Core.Core.Audio
         [SerializeField] private AudioClip clip;
         [SerializeField, ValueDropdown("_dropdownItems")] private string clipName;
 
-        private IEnumerable<string> _dropdownItems => _soundNamesOrigin.SoundsList;
+        private IEnumerable<string> DropdownItems => _soundNamesOrigin.SoundsList;
         
         public string ClipName => clipName;
         public float PlayVolume => playVolume;

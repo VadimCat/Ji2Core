@@ -4,12 +4,12 @@ using Ji2Core.Core.Pools;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
-    public class Sound : MonoBehaviour, IBootstrapable
+    public class Sound : MonoBehaviour
     {
-        private const string SFX_KEY = "SfxVolume";
-        private const string MUSIC_KEY = "MusicVolume";
+        private const string SfxKey = "SfxVolume";
+        private const string MusicKey = "MusicVolume";
 
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource musicSource;
@@ -17,46 +17,46 @@ namespace Ji2Core.Core.Audio
         [SerializeField] private AudioClipsConfig clipsConfig;
         [SerializeField] private AudioMixer mixer;
         
-        [SerializeField] private SfxPlaybackSource playbackSource;
+        [SerializeField] private SfxPlaybackSource _playbackSource;
 
-        public ReactiveProperty<float> sfxVolume;
-        public ReactiveProperty<float> musicVolume;
+        public ReactiveProperty<float> SfxVolume;
+        public ReactiveProperty<float> MusicVolume;
 
-        private AudioSettings audioSettings;
-        private Pool<SfxPlaybackSource> sfxPlaybackPool; 
+        private AudioSettings _audioSettings;
+        private Pool<SfxPlaybackSource> _sfxPlaybackPool; 
 
         public void Bootstrap()
         {
-            sfxPlaybackPool = new Pool<SfxPlaybackSource>(playbackSource, transform);
-            audioSettings = new();
+            _sfxPlaybackPool = new Pool<SfxPlaybackSource>(_playbackSource, transform);
+            _audioSettings = new();
             clipsConfig.Bootstrap();
-            sfxVolume = new ReactiveProperty<float>((audioSettings.SfxLevel * audioConfig.MaxSfxLevel).ToAudioLevel());
-            musicVolume = new ReactiveProperty<float>((audioSettings.MusicLevel * audioConfig.MaxMusicLevel).ToAudioLevel());
+            SfxVolume = new ReactiveProperty<float>((_audioSettings.SfxLevel * audioConfig.MaxSfxLevel).ToAudioLevel());
+            MusicVolume = new ReactiveProperty<float>((_audioSettings.MusicLevel * audioConfig.MaxMusicLevel).ToAudioLevel());
             
-            mixer.SetFloat(SFX_KEY, sfxVolume.Value);
-            mixer.SetFloat(MUSIC_KEY, musicVolume.Value);
+            mixer.SetFloat(SfxKey, SfxVolume.Value);
+            mixer.SetFloat(MusicKey, MusicVolume.Value);
         }
 
         public void SetSfxLevel(float level)
         {
             var groupVolume = (audioConfig.MaxSfxLevel * level).ToAudioLevel();
-            sfxSource.outputAudioMixerGroup.audioMixer.SetFloat(MUSIC_KEY, groupVolume);
+            sfxSource.outputAudioMixerGroup.audioMixer.SetFloat(MusicKey, groupVolume);
 
-            audioSettings.SfxLevel = level;
-            sfxVolume.Value = level;
+            _audioSettings.SfxLevel = level;
+            SfxVolume.Value = level;
             
-            audioSettings.Save();
+            _audioSettings.Save();
         }
 
         public void SetMusicLevel(float level)
         {
             var groupVolume = (audioConfig.MaxMusicLevel * level).ToAudioLevel();
-            musicSource.outputAudioMixerGroup.audioMixer.SetFloat(SFX_KEY, groupVolume);
+            musicSource.outputAudioMixerGroup.audioMixer.SetFloat(SfxKey, groupVolume);
 
-            audioSettings.MusicLevel = level;
-            musicVolume.Value = level;
+            _audioSettings.MusicLevel = level;
+            MusicVolume.Value = level;
             
-            audioSettings.Save();
+            _audioSettings.Save();
         }
 
         public void PlayMusic(string clipName)
@@ -69,16 +69,16 @@ namespace Ji2Core.Core.Audio
         
         public async UniTask PlaySfxAsync(string clipName)
         {
-            var source = sfxPlaybackPool.Spawn();
+            var source = _sfxPlaybackPool.Spawn();
             var clipConfig = clipsConfig.GetClip(clipName);
             source.SetDependencies(clipConfig);
             await source.PlaybackAsync();
-            sfxPlaybackPool.DeSpawn(source);
+            _sfxPlaybackPool.DeSpawn(source);
         }
 
         public SfxPlaybackSource GetPlaybackSource(string clipName)
         {
-            var source = sfxPlaybackPool.Spawn();
+            var source = _sfxPlaybackPool.Spawn();
             var clipConfig = clipsConfig.GetClip(clipName);
             source.SetDependencies(clipConfig);
             return source;
@@ -86,7 +86,7 @@ namespace Ji2Core.Core.Audio
 
         public void ReleasePlaybackSource(SfxPlaybackSource playbackSource)
         {
-            sfxPlaybackPool.DeSpawn(playbackSource);
+            _sfxPlaybackPool.DeSpawn(playbackSource);
         }
     }
 }

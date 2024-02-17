@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     public interface ISoundNamesCollection
     {

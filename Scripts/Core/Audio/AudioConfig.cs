@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     [CreateAssetMenu]
     public class AudioConfig : ScriptableObject

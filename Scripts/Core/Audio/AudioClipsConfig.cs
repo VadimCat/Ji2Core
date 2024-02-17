@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ji2Core.Core.Audio
+namespace Ji2.Audio
 {
     [CreateAssetMenu]
-    public class AudioClipsConfig : ScriptableObject, IBootstrapable
+    public class AudioClipsConfig : ScriptableObject
     {
         [SerializeField] private AudioClipConfig[] clips;
         
-        private Dictionary<string, AudioClipConfig> clipsDict = new();
+        private Dictionary<string, AudioClipConfig> _clipsDict = new();
         
         public void Bootstrap()
         {
             foreach (var clip in clips)
             {
-                clipsDict[clip.ClipName] = clip;
+                _clipsDict[clip.ClipName] = clip;
             }
         }
         
         public AudioClipConfig GetClip(string clipName)
         {
-            return clipsDict[clipName];
+            return _clipsDict[clipName];
         }
     }
 }
