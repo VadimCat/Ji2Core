@@ -1,8 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
-namespace Ji2Core.UI.Screens
+namespace Ji2.ScreenNavigation
 {
     public abstract class BaseScreen : SerializedMonoBehaviour
     {

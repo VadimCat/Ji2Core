@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Ji2Core.UI.Screens;
+using Ji2.ScreenNavigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Ji2Core.Core.ScreenNavigation
 {
-    public class ScreenNavigator : MonoBehaviour, IBootstrapable
+    public class ScreenNavigator : MonoBehaviour
     {
         [SerializeField] private Canvas canvas;
         [SerializeField] private List<BaseScreen> screens;

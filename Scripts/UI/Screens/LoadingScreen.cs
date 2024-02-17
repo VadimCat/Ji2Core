@@ -1,10 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Ji2.UI;
+using Ji2.ScreenNavigation;
 using Ji2.Utils;
-using Ji2Core.UI.Screens;
 using UnityEngine;
 
-namespace UI.Screens
+namespace Ji2.UI.Screens
 {
     public class LoadingScreen : BaseScreen
     {
