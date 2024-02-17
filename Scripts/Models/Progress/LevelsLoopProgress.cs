@@ -48,7 +48,7 @@ namespace Client
 
         public void IncLevel()
         {
-            if (currentLevelData.isUnique)
+            if (currentLevelData.IsUnique)
             {
                 int playedTotal = save.GetValue<int>(LastLevelNumberKey);
                 save.SaveValue(LastLevelNumberKey, playedTotal + 1);
@@ -73,11 +73,11 @@ namespace Client
 
             currentLevelData = new LevelData
             {
-                name = lvlId,
-                uniqueLevelNumber = playedUnique,
-                levelCount = levelCount,
-                lvlLoop = lvlLoop,
-                isUnique = isUnique
+                Name = lvlId,
+                UniqueLevelNumber = playedUnique,
+                LevelCount = levelCount,
+                LvlLoop = lvlLoop,
+                IsUnique = isUnique
             };
             return currentLevelData;
         }
@@ -108,11 +108,11 @@ namespace Client
 
 public class LevelData
 {
-    public string name = string.Empty;
-    public int uniqueLevelNumber;
-    public int levelCount;
-    public int lvlLoop;
-    public int isRandom;
-    public Difficulty difficulty;
-    public bool isUnique;
+    public string Name = string.Empty;
+    public int UniqueLevelNumber;
+    public int LevelCount;
+    public int LvlLoop;
+    public int IsRandom;
+    public Difficulty Difficulty;
+    public bool IsUnique;
 }

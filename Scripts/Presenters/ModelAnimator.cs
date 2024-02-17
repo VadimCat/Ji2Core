@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace Ji2.Presenters
@@ -52,9 +53,9 @@ namespace Ji2.Presenters
             }
         }
 
-        public async UniTask AwaitAllAnimationsEnd()
+        public async UniTask AwaitAllAnimationsEnd(CancellationToken cancellationToken = default)
         {
-            await UniTask.WaitUntil(CheckAnimationsListEmpty);
+            await UniTask.WaitUntil(CheckAnimationsListEmpty, cancellationToken: cancellationToken);
         }
         
         private bool CheckAnimationsListEmpty()

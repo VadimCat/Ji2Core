@@ -6,7 +6,7 @@ namespace Ji2.Context
 {
     public abstract class SceneInstaller : SerializedMonoBehaviour
     {
-        private readonly IDependenciesController _dependenciesController = Context.GetOrCreateInstance();
+        private readonly IDependenciesController _dependenciesController = DiContext.GetOrCreateInstance();
 
         private IEnumerable<(Type type, object obj)> _dependencies; 
             
