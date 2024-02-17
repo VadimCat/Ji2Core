@@ -1,0 +1,14 @@
+{
+    "name": "Ji2.Presenters",
+    "rootNamespace": "Ji2",
+    "references": ["GUID:f51ebe6a0ceec4240a699833d6309b23","GUID:6216dd614b753984b80ce8b43c54dd56","GUID:b40432cfc2d126b4aba397ccb07aa8f0"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

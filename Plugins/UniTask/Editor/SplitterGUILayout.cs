@@ -11,51 +11,51 @@ namespace Cysharp.Threading.Tasks.Editor
     // reflection call of UnityEditor.SplitterGUILayout
     internal static class SplitterGUILayout
     {
-        static BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+        static BindingFlags _flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
-        static Lazy<Type> splitterStateType = new Lazy<Type>(() =>
+        static Lazy<Type> _splitterStateType = new Lazy<Type>(() =>
         {
             var type = typeof(EditorWindow).Assembly.GetTypes().First(x => x.FullName == "UnityEditor.SplitterState");
             return type;
         });
 
-        static Lazy<ConstructorInfo> splitterStateCtor = new Lazy<ConstructorInfo>(() =>
+        static Lazy<ConstructorInfo> _splitterStateCtor = new Lazy<ConstructorInfo>(() =>
         {
-            var type = splitterStateType.Value;
-            return type.GetConstructor(flags, null, new Type[] { typeof(float[]), typeof(int[]), typeof(int[]) }, null);
+            var type = _splitterStateType.Value;
+            return type.GetConstructor(_flags, null, new Type[] { typeof(float[]), typeof(int[]), typeof(int[]) }, null);
         });
 
-        static Lazy<Type> splitterGUILayoutType = new Lazy<Type>(() =>
+        static Lazy<Type> _splitterGUILayoutType = new Lazy<Type>(() =>
         {
             var type = typeof(EditorWindow).Assembly.GetTypes().First(x => x.FullName == "UnityEditor.SplitterGUILayout");
             return type;
         });
 
-        static Lazy<MethodInfo> beginVerticalSplit = new Lazy<MethodInfo>(() =>
+        static Lazy<MethodInfo> _beginVerticalSplit = new Lazy<MethodInfo>(() =>
         {
-            var type = splitterGUILayoutType.Value;
-            return type.GetMethod("BeginVerticalSplit", flags, null, new Type[] { splitterStateType.Value, typeof(GUILayoutOption[]) }, null);
+            var type = _splitterGUILayoutType.Value;
+            return type.GetMethod("BeginVerticalSplit", _flags, null, new Type[] { _splitterStateType.Value, typeof(GUILayoutOption[]) }, null);
         });
 
-        static Lazy<MethodInfo> endVerticalSplit = new Lazy<MethodInfo>(() =>
+        static Lazy<MethodInfo> _endVerticalSplit = new Lazy<MethodInfo>(() =>
         {
-            var type = splitterGUILayoutType.Value;
-            return type.GetMethod("EndVerticalSplit", flags, null, Type.EmptyTypes, null);
+            var type = _splitterGUILayoutType.Value;
+            return type.GetMethod("EndVerticalSplit", _flags, null, Type.EmptyTypes, null);
         });
 
         public static object CreateSplitterState(float[] relativeSizes, int[] minSizes, int[] maxSizes)
         {
-            return splitterStateCtor.Value.Invoke(new object[] { relativeSizes, minSizes, maxSizes });
+            return _splitterStateCtor.Value.Invoke(new object[] { relativeSizes, minSizes, maxSizes });
         }
 
         public static void BeginVerticalSplit(object splitterState, params GUILayoutOption[] options)
         {
-            beginVerticalSplit.Value.Invoke(null, new object[] { splitterState, options });
+            _beginVerticalSplit.Value.Invoke(null, new object[] { splitterState, options });
         }
 
         public static void EndVerticalSplit()
         {
-            endVerticalSplit.Value.Invoke(null, Type.EmptyTypes);
+            _endVerticalSplit.Value.Invoke(null, Type.EmptyTypes);
         }
     }
 }

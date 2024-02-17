@@ -15,20 +15,20 @@ namespace Cysharp.Threading.Tasks.Editor
 {
     public class UniTaskTrackerViewItem : TreeViewItem
     {
-        static Regex removeHref = new Regex("<a href.+>(.+)</a>", RegexOptions.Compiled);
+        static Regex _removeHref = new Regex("<a href.+>(.+)</a>", RegexOptions.Compiled);
 
         public string TaskType { get; set; }
         public string Elapsed { get; set; }
         public string Status { get; set; }
 
-        string position;
+        string _position;
         public string Position
         {
-            get { return position; }
+            get { return _position; }
             set
             {
-                position = value;
-                PositionFirstLine = GetFirstLine(position);
+                _position = value;
+                PositionFirstLine = GetFirstLine(_position);
             }
         }
 
@@ -46,7 +46,7 @@ namespace Cysharp.Threading.Tasks.Editor
                 sb.Append(str[i]);
             }
 
-            return removeHref.Replace(sb.ToString(), "$1");
+            return _removeHref.Replace(sb.ToString(), "$1");
         }
 
         public UniTaskTrackerViewItem(int id) : base(id)
@@ -57,7 +57,7 @@ namespace Cysharp.Threading.Tasks.Editor
 
     public class UniTaskTrackerTreeView : TreeView
     {
-        const string sortedColumnIndexStateKey = "UniTaskTrackerTreeView_sortedColumnIndex";
+        const string SortedColumnIndexStateKey = "UniTaskTrackerTreeView_sortedColumnIndex";
 
         public IReadOnlyList<TreeViewItem> CurrentBindingItems;
 
@@ -83,7 +83,7 @@ namespace Cysharp.Threading.Tasks.Editor
             header.ResizeToFit();
             Reload();
 
-            header.sortedColumnIndex = SessionState.GetInt(sortedColumnIndexStateKey, 1);
+            header.sortedColumnIndex = SessionState.GetInt(SortedColumnIndexStateKey, 1);
         }
 
         public void ReloadAndSort()
@@ -96,7 +96,7 @@ namespace Cysharp.Threading.Tasks.Editor
 
         private void Header_sortingChanged(MultiColumnHeader multiColumnHeader)
         {
-            SessionState.SetInt(sortedColumnIndexStateKey, multiColumnHeader.sortedColumnIndex);
+            SessionState.SetInt(SortedColumnIndexStateKey, multiColumnHeader.sortedColumnIndex);
             var index = multiColumnHeader.sortedColumnIndex;
             var ascending = multiColumnHeader.IsSortedAscending(multiColumnHeader.sortedColumnIndex);
 

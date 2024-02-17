@@ -1,0 +1,14 @@
+{
+    "name": "Ji2.CommonCore",
+    "rootNamespace": "Ji2",
+    "references": ["GUID:b40432cfc2d126b4aba397ccb07aa8f0"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

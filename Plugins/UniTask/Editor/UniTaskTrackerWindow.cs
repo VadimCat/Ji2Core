@@ -13,16 +13,16 @@ namespace Cysharp.Threading.Tasks.Editor
 {
     public class UniTaskTrackerWindow : EditorWindow
     {
-        static int interval;
+        static int _interval;
 
-        static UniTaskTrackerWindow window;
+        static UniTaskTrackerWindow _window;
 
         [MenuItem("Window/UniTask Tracker")]
         public static void OpenWindow()
         {
-            if (window != null)
+            if (_window != null)
             {
-                window.Close();
+                _window.Close();
             }
 
             // will called OnEnable(singleton instance will be set).
@@ -31,14 +31,14 @@ namespace Cysharp.Threading.Tasks.Editor
 
         static readonly GUILayoutOption[] EmptyLayoutOption = new GUILayoutOption[0];
 
-        UniTaskTrackerTreeView treeView;
-        object splitterState;
+        UniTaskTrackerTreeView _treeView;
+        object _splitterState;
 
         void OnEnable()
         {
-            window = this; // set singleton.
-            splitterState = SplitterGUILayout.CreateSplitterState(new float[] { 75f, 25f }, new int[] { 32, 32 }, null);
-            treeView = new UniTaskTrackerTreeView();
+            _window = this; // set singleton.
+            _splitterState = SplitterGUILayout.CreateSplitterState(new float[] { 75f, 25f }, new int[] { 32, 32 }, null);
+            _treeView = new UniTaskTrackerTreeView();
             TaskTracker.EditorEnableState.EnableAutoReload = EditorPrefs.GetBool(TaskTracker.EnableAutoReloadKey, false);
             TaskTracker.EditorEnableState.EnableTracking = EditorPrefs.GetBool(TaskTracker.EnableTrackingKey, false);
             TaskTracker.EditorEnableState.EnableStackTrace = EditorPrefs.GetBool(TaskTracker.EnableStackTraceKey, false);
@@ -50,7 +50,7 @@ namespace Cysharp.Threading.Tasks.Editor
             RenderHeadPanel();
 
             // Splittable
-            SplitterGUILayout.BeginVerticalSplit(this.splitterState, EmptyLayoutOption);
+            SplitterGUILayout.BeginVerticalSplit(this._splitterState, EmptyLayoutOption);
             {
                 // Column Tabble
                 RenderTable();
@@ -98,7 +98,7 @@ namespace Cysharp.Threading.Tasks.Editor
             if (GUILayout.Button(ReloadHeadContent, EditorStyles.toolbarButton, EmptyLayoutOption))
             {
                 TaskTracker.CheckAndResetDirty();
-                treeView.ReloadAndSort();
+                _treeView.ReloadAndSort();
                 Repaint();
             }
 
@@ -115,21 +115,21 @@ namespace Cysharp.Threading.Tasks.Editor
 
         #region TableColumn
 
-        Vector2 tableScroll;
-        GUIStyle tableListStyle;
+        Vector2 _tableScroll;
+        GUIStyle _tableListStyle;
 
         void RenderTable()
         {
-            if (tableListStyle == null)
+            if (_tableListStyle == null)
             {
-                tableListStyle = new GUIStyle("CN Box");
-                tableListStyle.margin.top = 0;
-                tableListStyle.padding.left = 3;
+                _tableListStyle = new GUIStyle("CN Box");
+                _tableListStyle.margin.top = 0;
+                _tableListStyle.padding.left = 3;
             }
 
-            EditorGUILayout.BeginVertical(tableListStyle, EmptyLayoutOption);
+            EditorGUILayout.BeginVertical(_tableListStyle, EmptyLayoutOption);
 
-            this.tableScroll = EditorGUILayout.BeginScrollView(this.tableScroll, new GUILayoutOption[]
+            this._tableScroll = EditorGUILayout.BeginScrollView(this._tableScroll, new GUILayoutOption[]
             {
                 GUILayout.ExpandWidth(true),
                 GUILayout.MaxWidth(2000f)
@@ -141,7 +141,7 @@ namespace Cysharp.Threading.Tasks.Editor
             });
 
 
-            treeView?.OnGUI(controlRect);
+            _treeView?.OnGUI(controlRect);
 
             EditorGUILayout.EndScrollView();
             EditorGUILayout.EndVertical();
@@ -151,11 +151,11 @@ namespace Cysharp.Threading.Tasks.Editor
         {
             if (EnableAutoReload)
             {
-                if (interval++ % 120 == 0)
+                if (_interval++ % 120 == 0)
                 {
                     if (TaskTracker.CheckAndResetDirty())
                     {
-                        treeView.ReloadAndSort();
+                        _treeView.ReloadAndSort();
                         Repaint();
                     }
                 }
@@ -166,34 +166,34 @@ namespace Cysharp.Threading.Tasks.Editor
 
         #region Details
 
-        static GUIStyle detailsStyle;
-        Vector2 detailsScroll;
+        static GUIStyle _detailsStyle;
+        Vector2 _detailsScroll;
 
         void RenderDetailsPanel()
         {
-            if (detailsStyle == null)
+            if (_detailsStyle == null)
             {
-                detailsStyle = new GUIStyle("CN Message");
-                detailsStyle.wordWrap = false;
-                detailsStyle.stretchHeight = true;
-                detailsStyle.margin.right = 15;
+                _detailsStyle = new GUIStyle("CN Message");
+                _detailsStyle.wordWrap = false;
+                _detailsStyle.stretchHeight = true;
+                _detailsStyle.margin.right = 15;
             }
 
             string message = "";
-            var selected = treeView.state.selectedIDs;
+            var selected = _treeView.state.selectedIDs;
             if (selected.Count > 0)
             {
                 var first = selected[0];
-                var item = treeView.CurrentBindingItems.FirstOrDefault(x => x.id == first) as UniTaskTrackerViewItem;
+                var item = _treeView.CurrentBindingItems.FirstOrDefault(x => x.id == first) as UniTaskTrackerViewItem;
                 if (item != null)
                 {
                     message = item.Position;
                 }
             }
 
-            detailsScroll = EditorGUILayout.BeginScrollView(this.detailsScroll, EmptyLayoutOption);
-            var vector = detailsStyle.CalcSize(new GUIContent(message));
-            EditorGUILayout.SelectableLabel(message, detailsStyle, new GUILayoutOption[]
+            _detailsScroll = EditorGUILayout.BeginScrollView(this._detailsScroll, EmptyLayoutOption);
+            var vector = _detailsStyle.CalcSize(new GUIContent(message));
+            EditorGUILayout.SelectableLabel(message, _detailsStyle, new GUILayoutOption[]
             {
                 GUILayout.ExpandHeight(true),
                 GUILayout.ExpandWidth(true),

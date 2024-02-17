@@ -1,0 +1,18 @@
+{
+    "name": "Ji2.Context",
+    "rootNamespace": "Ji2.Context",
+    "references": [
+        "GUID:75d9021ae7bc8d44a8fcd6946a25ab5d",
+        "GUID:6216dd614b753984b80ce8b43c54dd56",
+        "GUID:b40432cfc2d126b4aba397ccb07aa8f0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

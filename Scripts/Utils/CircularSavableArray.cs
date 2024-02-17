@@ -6,29 +6,29 @@ namespace Ji2.Utils
 {
     public class CircularSavableArray<T> : ISavable
     {
-        private readonly string indexSaveKey;
-        private readonly List<T> array;
-        private int index;
+        private readonly string _indexSaveKey;
+        private readonly List<T> _array;
+        private int _index;
 
         public CircularSavableArray(IEnumerable<T> array, string indexSaveKey)
         {
-            this.array = new List<T>(array);
-            this.indexSaveKey = indexSaveKey;   
+            this._array = new List<T>(array);
+            this._indexSaveKey = indexSaveKey;   
             Load();
         }
 
         public T GetNext()
         {
-            index++;
-            index = index == array.Count ? 0 : index;
+            _index++;
+            _index = _index == _array.Count ? 0 : _index;
             Save();
-            return array[index];
+            return _array[_index];
         }
 
 
-        public void Save() => PlayerPrefs.SetInt(indexSaveKey, index);
+        public void Save() => PlayerPrefs.SetInt(_indexSaveKey, _index);
 
-        public void Load() => index = PlayerPrefs.GetInt(indexSaveKey) - 1;
+        public void Load() => _index = PlayerPrefs.GetInt(_indexSaveKey) - 1;
 
         public void ClearSave()
         {
