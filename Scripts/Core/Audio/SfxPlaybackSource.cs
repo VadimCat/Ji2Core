@@ -7,14 +7,12 @@ namespace Ji2.Audio
     public class SfxPlaybackSource : MonoBehaviour, IPoolable
     {
         [SerializeField] private AudioSource source;
-        private AudioClipConfig _clipConfig;
         private UniTaskCompletionSource<bool> _completionSource;
 
         public bool IsPlaying => source.isPlaying;
         
         public void SetDependencies(AudioClipConfig clipConfig)
         {
-            this._clipConfig = clipConfig;
             source.clip = clipConfig.Clip;
             source.volume = clipConfig.PlayVolume;
         }
