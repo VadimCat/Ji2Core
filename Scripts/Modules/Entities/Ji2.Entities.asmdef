@@ -1,7 +1,7 @@
 {
-    "name": "Ji2.Models",
+    "name": "Ji2.Entities",
     "rootNamespace": "Ji2",
-    "references": ["GUID:6216dd614b753984b80ce8b43c54dd56","GUID:5722d0635792000489b375cb9e2d1f35","GUID:b40432cfc2d126b4aba397ccb07aa8f0","GUID:11a0ce5ca90f3764c9175154c67b14e9","GUID:f8379b8993cbf7d40ace2801634a9283"],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

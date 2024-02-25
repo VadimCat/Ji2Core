@@ -1,6 +1,5 @@
 ﻿using System;
 using Ji2.CommonCore.SaveDataContainer;
-using UnityEngine;
 
 namespace Ji2.Models
 {

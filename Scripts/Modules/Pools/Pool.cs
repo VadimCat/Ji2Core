@@ -50,12 +50,10 @@ namespace Ji2.Pools
             switch (isWorldSpace)
             {
                 case true:
-                    transform.position = position;
-                    transform.rotation = rotation;
+                    transform.SetPositionAndRotation(position, rotation);
                     break;
                 case false:
-                    transform.localPosition = position;
-                    transform.localRotation = rotation;
+                    transform.SetLocalPositionAndRotation(position, rotation);
                     break;
             }
 

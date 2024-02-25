@@ -9,7 +9,7 @@ namespace Ji2.Audio
         [SerializeField] private AudioSource source;
         private UniTaskCompletionSource<bool> _completionSource;
 
-        public bool IsPlaying => source.isPlaying;
+        public bool IsPlaying => source is { isPlaying: true };
         
         public void SetDependencies(AudioClipConfig clipConfig)
         {
