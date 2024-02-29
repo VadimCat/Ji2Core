@@ -11,10 +11,16 @@ namespace Ji2
 
         public CameraProvider()
         {
+            ChangeCamera();
             SceneManager.sceneLoaded += ChangeCamera;
         }
-
+        
         private void ChangeCamera(Scene arg0, LoadSceneMode arg1)
+        {
+            ChangeCamera();
+        }
+        
+        private void ChangeCamera()
         {
             _mainCamera = Camera.main;
         }
