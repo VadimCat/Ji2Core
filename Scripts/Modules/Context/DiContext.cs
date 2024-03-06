@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Client;
-using Ji2.CommonCore.SaveDataContainer;
 
 namespace Ji2.Context
 {
@@ -9,12 +7,18 @@ namespace Ji2.Context
     {
         private static DiContext _instance;
         private readonly Dictionary<Type, object> _services = new();
-
+        private readonly IDependenciesProvider _parentProvider;
+        
         private DiContext()
         {
             _instance = this;
         }
 
+        public DiContext(IDependenciesProvider parentProvider)
+        {
+            _parentProvider = parentProvider;
+        }
+        
         public static DiContext GetOrCreateInstance()
         {
             if (_instance != null)
@@ -23,7 +27,7 @@ namespace Ji2.Context
             return new DiContext();
         }
 
-        public void Register<TContract>(TContract service)
+        public void Register<TContract>(TContract service) where TContract : class
         {
             Register(typeof(TContract), service);
         }
@@ -32,7 +36,7 @@ namespace Ji2.Context
         {
             if (_services.ContainsKey(type))
             {
-                throw new Exception("Service already added by this type");
+                throw new Exception($"Service already added by this type {type.FullName}");
             }
 
             if (type.IsInstanceOfType(service) || service.GetType() == type)
@@ -45,14 +49,39 @@ namespace Ji2.Context
             }
         }
 
-        public TContract GetService<TContract>()
+        public TContract GetService<TContract>() where TContract : class
         {
-            if (!_services.ContainsKey(typeof(TContract)))
+            if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
+            {
+                return _parentProvider.GetService<TContract>();
+            }
+
+            if(!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
+            {
                 throw new Exception($"No service register by type {typeof(TContract)}");
+            }
+
             return (TContract)_services[typeof(TContract)];
         }
 
-        public void Unregister<TContract>()
+        public bool TryGetService<TContract>(out TContract result) where TContract : class
+        {
+            if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
+            {
+                return _parentProvider.TryGetService(out result); 
+            }
+
+            if(!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
+            {
+                result = null;
+                return false;
+            }
+
+            result = (TContract)_services[typeof(TContract)]; 
+            return true;
+        }
+
+        public void Unregister<TContract>() where TContract : class
         {
             Unregister(typeof(TContract));
         }
@@ -66,21 +95,19 @@ namespace Ji2.Context
 
             _services.Remove(type);
         }
-
-        public LevelsLoopProgress LevelsLoopProgress => GetService<LevelsLoopProgress>();
-        public ISaveDataContainer SaveDataContainer => GetService<ISaveDataContainer>();
     }
 
     public interface IDependenciesController
     {
-        public void Register<TContract>(TContract service);
+        public void Register<TContract>(TContract service) where TContract : class;
         public void Register(Type type, object service);
         public void Unregister(Type type);
-        public void Unregister<TContract>();
+        public void Unregister<TContract>() where TContract : class;
     }
 
     public interface IDependenciesProvider
     {
-        public TContract GetService<TContract>();
+        public TContract GetService<TContract>() where TContract : class;
+        public bool TryGetService<TContract>(out TContract result) where TContract : class;
     }
 }

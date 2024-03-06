@@ -7,7 +7,8 @@ namespace Ji2.Utils
         private T _value;
         private T _prevValue;
 
-        public event Action<T, T> EventValueChanged;
+        public event Action<T, T> EventValueChangedWithPrevious;
+        public event Action<T> EventValueChanged;
 
         public T PrevValue => _prevValue;
 
@@ -16,9 +17,13 @@ namespace Ji2.Utils
             get => _value;
             set
             {
-                EventValueChanged?.Invoke(value, _value);
                 _prevValue = _value;
-                _value = value;
+                if (!_value.Equals(value))
+                {
+                    _value = value;
+                    EventValueChangedWithPrevious?.Invoke(_value, _prevValue);
+                    EventValueChanged?.Invoke(_value);
+                }
             }
         }
 
@@ -34,7 +39,7 @@ namespace Ji2.Utils
 
         public void Dispose()
         {
-            EventValueChanged = null;
+            EventValueChangedWithPrevious = null;
         }
     }
 }
