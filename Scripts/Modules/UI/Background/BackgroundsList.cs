@@ -1,9 +1,8 @@
-using Ji2Core.Models;
 using UnityEngine;
 
 namespace Ji2Core.UI.Background
 {
-    public class BackgroundsList : ISavable
+    public class BackgroundsList
     {
         private const string BackgroundIndexSaveKey = "background_index";
         private readonly Sprite[] _backgrounds;

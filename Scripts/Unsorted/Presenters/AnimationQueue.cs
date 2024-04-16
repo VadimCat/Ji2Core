@@ -5,11 +5,13 @@ using Cysharp.Threading.Tasks;
 
 namespace Ji2.Presenters
 {
-    public class ModelAnimator
+    public class AnimationQueue
     {
-        private List<UniTask> _animations = new();
-        private Queue<Func<UniTask>> _animationsQueue = new();
-            
+        private readonly List<UniTask> _animations = new();
+        private readonly Queue<Func<UniTask>> _animationsQueue = new();
+
+        public bool IsFree => _animations.Count == 0 && _animationsQueue.Count == 0;
+
         public async UniTask Animate(UniTask uniTask)
         {
             _animations.Add(uniTask);
@@ -27,7 +29,7 @@ namespace Ji2.Presenters
 
         public async UniTask Enqueue(Action action)
         {
-            if (CheckAnimationsListEmpty())
+            if (IsFree)
             {
                 action();
             }
@@ -40,10 +42,10 @@ namespace Ji2.Presenters
                 });
             }
         }
-        
+
         public async UniTask Enqueue(Func<UniTask> animationFunc)
         {
-            if (CheckAnimationsListEmpty())
+            if (IsFree)
             {
                 await Animate(animationFunc());
             }
@@ -57,10 +59,10 @@ namespace Ji2.Presenters
         {
             await UniTask.WaitUntil(CheckAnimationsListEmpty, cancellationToken: cancellationToken);
         }
-        
+
         private bool CheckAnimationsListEmpty()
         {
-            return _animations.Count == 0 && _animationsQueue.Count == 0;
+            return IsFree;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Ji2.UserInput
         
         protected override Joystick Create(DiContext diContext)
         {
-            joystick.SetDependencies(diContext.GetService<CameraProvider>(), diContext.GetService<UpdateService>());
+            joystick.SetDependencies(diContext.Get<CameraProvider>(), diContext.Get<UpdateService>());
             return joystick;
         }
     }

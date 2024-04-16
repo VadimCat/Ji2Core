@@ -22,12 +22,12 @@ namespace Ji2.Context.Context
    _localContext = localContext;
   }
 
-  public TContract GetService<TContract>() where TContract : class
+  public TContract Get<TContract>()
   {
-   return _localContext.GetService<TContract>();
+   return _localContext.Get<TContract>();
   }
 
-  public bool TryGetService<TContract>(out TContract result) where TContract : class
+  public bool TryGetService<TContract>(out TContract result)
   {
    return _localContext.TryGetService(out result);
   }

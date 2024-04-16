@@ -43,7 +43,7 @@ namespace Ji2
     {
         public static SceneLoader SceneLoader(this DiContext diContext)
         {
-            return diContext.GetService<SceneLoader>();
+            return diContext.Get<SceneLoader>();
         }
     }
 }

@@ -3,111 +3,111 @@ using System.Collections.Generic;
 
 namespace Ji2.Context
 {
-    public class DiContext : IDependenciesProvider, IDependenciesController
-    {
-        private static DiContext _instance;
-        private readonly Dictionary<Type, object> _services = new();
-        private readonly IDependenciesProvider _parentProvider;
-        
-        private DiContext()
-        {
-            _instance = this;
-        }
+ public class DiContext : IDependenciesProvider, IDependenciesController
+ {
+  private static DiContext _instance;
+  private readonly Dictionary<Type, object> _services = new();
+  private readonly IDependenciesProvider _parentProvider;
 
-        public DiContext(IDependenciesProvider parentProvider)
-        {
-            _parentProvider = parentProvider;
-        }
-        
-        public static DiContext GetOrCreateInstance()
-        {
-            if (_instance != null)
-                return _instance;
+  private DiContext()
+  {
+   _instance = this;
+  }
 
-            return new DiContext();
-        }
+  public DiContext(IDependenciesProvider parentProvider)
+  {
+   _parentProvider = parentProvider;
+  }
 
-        public void Register<TContract>(TContract service) where TContract : class
-        {
-            Register(typeof(TContract), service);
-        }
+  public static DiContext GetOrCreateInstance()
+  {
+   if (_instance != null)
+    return _instance;
 
-        public void Register(Type type, object service)
-        {
-            if (_services.ContainsKey(type))
-            {
-                throw new Exception($"Service already added by this type {type.FullName}");
-            }
+   return new DiContext();
+  }
 
-            if (type.IsInstanceOfType(service) || service.GetType() == type)
-            {
-                _services[type] = service;
-            }
-            else
-            {
-                throw new Exception("Service type doesn't match contract type");
-            }
-        }
+  public void Register<TContract>(TContract service)
+  {
+   Register(typeof(TContract), service);
+  }
 
-        public TContract GetService<TContract>() where TContract : class
-        {
-            if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
-            {
-                return _parentProvider.GetService<TContract>();
-            }
+  public void Register(Type type, object service)
+  {
+   if (_services.ContainsKey(type))
+   {
+    throw new Exception($"Service already added by this type {type.FullName}");
+   }
 
-            if(!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
-            {
-                throw new Exception($"No service register by type {typeof(TContract)}");
-            }
+   if (type.IsInstanceOfType(service) || service.GetType() == type)
+   {
+    _services[type] = service;
+   }
+   else
+   {
+    throw new Exception("Service type doesn't match contract type");
+   }
+  }
 
-            return (TContract)_services[typeof(TContract)];
-        }
+  public TContract Get<TContract>()
+  {
+   if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
+   {
+    return _parentProvider.Get<TContract>();
+   }
 
-        public bool TryGetService<TContract>(out TContract result) where TContract : class
-        {
-            if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
-            {
-                return _parentProvider.TryGetService(out result); 
-            }
+   if (!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
+   {
+    throw new Exception($"No service register by type {typeof(TContract)}");
+   }
 
-            if(!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
-            {
-                result = null;
-                return false;
-            }
+   return (TContract)_services[typeof(TContract)];
+  }
 
-            result = (TContract)_services[typeof(TContract)]; 
-            return true;
-        }
+  public bool TryGetService<TContract>(out TContract result)
+  {
+   if (!_services.ContainsKey(typeof(TContract)) && _parentProvider != null)
+   {
+    return _parentProvider.TryGetService(out result);
+   }
 
-        public void Unregister<TContract>() where TContract : class
-        {
-            Unregister(typeof(TContract));
-        }
+   if (!_services.ContainsKey(typeof(TContract)) && _parentProvider == null)
+   {
+    result = default;
+    return false;
+   }
 
-        public void Unregister(Type type)
-        {
-            if (!_services.ContainsKey(type))
-            {
-                throw new Exception("Service already unregistered by this type");
-            }
+   result = (TContract)_services[typeof(TContract)];
+   return true;
+  }
 
-            _services.Remove(type);
-        }
-    }
+  public void Unregister<TContract>()
+  {
+   Unregister(typeof(TContract));
+  }
 
-    public interface IDependenciesController
-    {
-        public void Register<TContract>(TContract service) where TContract : class;
-        public void Register(Type type, object service);
-        public void Unregister(Type type);
-        public void Unregister<TContract>() where TContract : class;
-    }
+  public void Unregister(Type type)
+  {
+   if (!_services.ContainsKey(type))
+   {
+    throw new Exception("Service already unregistered by this type");
+   }
 
-    public interface IDependenciesProvider
-    {
-        public TContract GetService<TContract>() where TContract : class;
-        public bool TryGetService<TContract>(out TContract result) where TContract : class;
-    }
+   _services.Remove(type);
+  }
+ }
+
+ public interface IDependenciesController
+ {
+  public void Register<TContract>(TContract service);
+  public void Register(Type type, object service);
+  public void Unregister(Type type);
+  public void Unregister<TContract>();
+ }
+
+ public interface IDependenciesProvider
+ {
+  public TContract Get<TContract>();
+  public bool TryGetService<TContract>(out TContract result);
+ }
 }

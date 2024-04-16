@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Ji2Core.Core.ScreenNavigation
 {
-    public class ScreenNavigator : MonoBehaviour
+    public class ScreenNavigator : MonoBehaviour, IScreenSize
     {
         [SerializeField] private Canvas canvas;
         [SerializeField] private List<BaseScreen> screens;
@@ -21,7 +21,7 @@ namespace Ji2Core.Core.ScreenNavigation
         private BaseScreen _currentScreen;
 
         public BaseScreen CurrentScreen => _currentScreen;
-        public Vector2 Size => new(transform.rect.width, transform.rect.height);
+        public Vector2 ScreenSize => new(transform.rect.width, transform.rect.height);
         public float ScaleFactor => transform.rect.height / scaler.referenceResolution.y;
 
         public void Bootstrap()
@@ -85,5 +85,10 @@ namespace Ji2Core.Core.ScreenNavigation
             Destroy(_currentScreen.gameObject);
             _currentScreen = null;
         }
+    }
+
+    public interface IScreenSize
+    {
+        Vector2 ScreenSize { get; }
     }
 }

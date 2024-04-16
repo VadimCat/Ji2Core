@@ -1,9 +1,8 @@
-﻿using Ji2Core.Models;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Ji2.Audio
 {
-    public class AudioSettings : ISavable
+    public class AudioSettings
     {
         public const string SfxLevelKey = "sfxLevelKey";
         public const string MusicLevelKey = "musicLevelKey";
